@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Football Commentary Generator — JSON Demo</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2128; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --accent2:#3fb950;
+    --warn:#f0883e; --danger:#f85149; --mono-bg:#010409; --variation:#a371f7;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+    font-size:16px; line-height:1.45;
+  }
+  .container{max-width:1440px;margin:0 auto;padding:22px 26px 70px;}
+  header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:18px;}
+  h1{font-size:28px;margin:0 0 4px;font-weight:700;}
+  .subtitle{color:var(--muted);font-size:15px;margin:0;}
+  .status{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);
+    background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:8px 14px;white-space:nowrap;}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:0 0 auto;}
+  .dot.ok{background:var(--accent2);}
+  .dot.bad{background:var(--danger);}
+
+  .schema-bar{margin-bottom:18px;}
+  .schema-bar .field-label{margin-bottom:8px;}
+  .type-chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .type-chip{background:var(--panel2);border:1px solid var(--border);border-radius:999px;
+    padding:4px 12px;font-size:13px;color:var(--muted);font-family:Consolas,"Courier New",monospace;}
+
+  .main-grid{display:grid;grid-template-columns:minmax(380px,520px) 1fr;gap:24px;align-items:start;}
+  @media (max-width:980px){ .main-grid{grid-template-columns:1fr;} }
+
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .panel h2{margin:0 0 14px;font-size:19px;letter-spacing:.2px;}
+
+  textarea#json-input{
+    width:100%;min-height:360px;background:var(--mono-bg);color:#c9d1d9;
+    border:1px solid var(--border);border-radius:8px;
+    font-family:Consolas,"Courier New",monospace;font-size:15px;padding:14px;
+    resize:vertical;line-height:1.55;
+  }
+  textarea#json-input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+
+  .controls-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;}
+  label.inline{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  select#example-select{
+    background:var(--panel2);color:var(--text);border:1px solid var(--border);
+    border-radius:8px;padding:10px 12px;font-size:15px;max-width:100%;
+  }
+
+  .actions-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;}
+  button{
+    font-size:16px;padding:13px 22px;border-radius:8px;border:none;cursor:pointer;
+    font-weight:600;transition:opacity .15s,transform .05s;
+  }
+  button:active{transform:scale(0.98);}
+  button:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+  #btn-generate{background:var(--accent);color:#04101f;}
+  #btn-variation{background:var(--variation);color:#160826;}
+
+  .error-box{
+    margin-top:14px;padding:13px 16px;background:#3b1414;border:1px solid var(--danger);
+    color:#ffb4ab;border-radius:8px;font-size:14.5px;white-space:pre-wrap;font-family:Consolas,monospace;
+  }
+  .status-line{margin-top:12px;font-size:14px;color:var(--muted);min-height:1.2em;}
+  .status-line.busy{color:var(--accent);}
+
+  .results-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .results-header h2{margin:0;}
+  .results-summary{font-size:14px;color:var(--muted);}
+
+  .timeline{display:flex;flex-direction:column;gap:20px;}
+  .event-card{
+    background:var(--panel2);border:1px solid var(--border);border-left:5px solid var(--accent);
+    border-radius:0 10px 10px 0;padding:18px 20px;
+  }
+  .event-card.important{border-left-color:var(--warn);}
+  .event-card.render-error{border-left-color:var(--danger);}
+  .event-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px;}
+  .event-top-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .event-time{font-size:22px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;}
+  .event-type-badge{
+    display:inline-block;background:#21262d;border:1px solid var(--border);color:var(--text);
+    font-size:13px;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px;
+  }
+  .important-badge{
+    display:inline-block;background:#3a2a12;border:1px solid var(--warn);color:var(--warn);
+    font-size:12px;padding:3px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px;
+  }
+  .mode-badge{font-size:13px;padding:4px 12px;border-radius:999px;border:1px solid var(--border);}
+  .mode-badge.greedy{color:var(--accent2);border-color:var(--accent2);}
+  .mode-badge.variation{color:var(--variation);border-color:var(--variation);}
+
+  .commentary{font-size:25px;line-height:1.45;margin:8px 0 16px;color:#f0f6fc;font-weight:500;}
+
+  .meta-row{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);margin-bottom:14px;}
+  .meta-row span b{color:var(--text);font-weight:600;}
+
+  .field-block{margin-top:14px;}
+  .field-label{
+    font-size:11.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);
+    margin-bottom:7px;display:flex;align-items:center;gap:8px;
+  }
+  .field-label .hint{font-size:11px;color:var(--variation);text-transform:none;letter-spacing:0;font-style:italic;}
+  .structured-input{
+    font-family:Consolas,"Courier New",monospace;font-size:14.5px;background:var(--mono-bg);
+    border:1px solid var(--accent);border-radius:8px;padding:13px 15px;color:#7ee787;
+    white-space:pre-wrap;word-break:break-word;
+  }
+  .grounding-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .grounding-chip{background:#21262d;border:1px solid var(--border);border-radius:8px;padding:6px 11px;font-size:13.5px;}
+  .grounding-chip .tag{color:var(--accent);font-family:Consolas,monospace;margin-right:6px;}
+  .grounding-empty{font-size:13.5px;color:var(--muted);font-style:italic;}
+
+  .placeholder{color:var(--muted);font-size:16px;text-align:center;padding:50px 10px;}
+  footer.hint{margin-top:22px;font-size:12.5px;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div>
+      <h1>Football Commentary Generator</h1>
+      <p class="subtitle">JSON event → structured input → Transformer → commentary (live demo)</p>
+    </div>
+    <div class="status" id="backend-status">
+      <span class="dot" id="backend-dot"></span>
+      <span id="backend-status-text">Checking backend…</span>
+    </div>
+  </header>
+
+  <div class="panel schema-bar" id="schema-bar" hidden>
+    <div class="field-label">Known event types (from /api/schema)</div>
+    <div class="type-chips" id="type-chips"></div>
+  </div>
+
+  <div class="main-grid">
+
+    <section class="panel">
+      <h2>Event JSON</h2>
+
+      <div class="controls-row">
+        <label class="inline" for="example-select">Load example:</label>
+        <select id="example-select">
+          <option value="">— choose a preset —</option>
+          <option value="goal">Goal (2 players)</option>
+          <option value="corner">Corner (1 player)</option>
+          <option value="card">Yellow card (1 player)</option>
+          <option value="timeline">Multi-event timeline</option>
+        </select>
+      </div>
+
+      <div style="margin-top:14px;">
+        <textarea id="json-input" spellcheck="false"></textarea>
+      </div>
+
+      <div id="json-error" class="error-box" hidden></div>
+
+      <div class="actions-row">
+        <button id="btn-generate" type="button">Generate Commentary</button>
+        <button id="btn-variation" type="button">Generate Variation</button>
+      </div>
+
+      <div class="status-line" id="status-line"></div>
+    </section>
+
+    <section class="panel">
+      <div class="results-header">
+        <h2>Commentary</h2>
+        <div class="results-summary" id="results-summary"></div>
+      </div>
+      <div id="results">
+        <div class="placeholder">Press "Generate Commentary" to run the Transformer on the event JSON on the left.</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="hint">
+    Every line above comes from a live response from <code>/api/generate</code> on this server. Nothing is cached or hardcoded.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------- element references ----------
+  var jsonInput      = document.getElementById("json-input");
+  var jsonError       = document.getElementById("json-error");
+  var exampleSelect   = document.getElementById("example-select");
+  var btnGenerate     = document.getElementById("btn-generate");
+  var btnVariation    = document.getElementById("btn-variation");
+  var statusLine      = document.getElementById("status-line");
+  var resultsEl       = document.getElementById("results");
+  var resultsSummary  = document.getElementById("results-summary");
+  var backendDot      = document.getElementById("backend-dot");
+  var backendStatusTx = document.getElementById("backend-status-text");
+  var schemaBar       = document.getElementById("schema-bar");
+  var typeChips       = document.getElementById("type-chips");
+
+  var BTN_LABELS = { generate: "Generate Commentary", variation: "Generate Variation" };
+
+  // Fallback event-type list, used only if /api/schema cannot be reached (e.g. the
+  // page was opened before the backend started). Never used to fabricate output.
+  var FALLBACK_EVENT_TYPES = [
+    "soccer-ball","corner","y-card","substitution","injury","penalty",
+    "r-card","whistle","time","<no_event>"
+  ];
+
+  // ---------- example presets (INPUT JSON ONLY — never hardcoded commentary) ----------
+  var EXAMPLES = {
+    goal: {
+      event: "soccer-ball", half: 1, minute: 29, important: true,
+      home: "Manchester United", away: "Arsenal",
+      players: [
+        { name: "Ander Herrera", side: "home" },
+        { name: "Ashley Young", side: "home" }
+      ]
+    },
+    corner: {
+      event: "corner", half: 2, minute: 18, important: false,
+      home: "Manchester United", away: "Arsenal",
+      players: [ { name: "Marcus Rashford", side: "home" } ]
+    },
+    card: {
+      event: "y-card", half: 1, minute: 41, important: true,
+      home: "Manchester United", away: "Arsenal",
+      players: [ { name: "Ander Herrera", side: "home" } ]
+    },
+    timeline: {
+      events: [
+        {
+          event: "corner", half: 1, minute: 10, important: false,
+          home: "Manchester United", away: "Arsenal",
+          players: [ { name: "Ashley Young", side: "home" } ]
+        },
+        {
+          event: "y-card", half: 1, minute: 34, important: true,
+          home: "Manchester United", away: "Arsenal",
+          players: [ { name: "Santi Cazorla", side: "away" } ]
+        },
+        {
+          event: "soccer-ball", half: 1, minute: 29, important: true,
+          home: "Manchester United", away: "Arsenal",
+          players: [
+            { name: "Ander Herrera", side: "home" },
+            { name: "Ashley Young", side: "home" }
+          ]
+        },
+        {
+          event: "whistle", half: 1, minute: 47, important: false,
+          home: "Manchester United", away: "Arsenal",
+          players: []
+        }
+      ]
+    }
+  };
+
+  // ---------- small DOM helpers ----------
+  function el(tag, opts){
+    var node = document.createElement(tag);
+    opts = opts || {};
+    if (opts.className) node.className = opts.className;
+    if (opts.text !== undefined) node.textContent = opts.text;
+    if (opts.attrs){
+      for (var k in opts.attrs){ if (Object.prototype.hasOwnProperty.call(opts.attrs, k)) node.setAttribute(k, opts.attrs[k]); }
+    }
+    return node;
+  }
+
+  function clearChildren(node){
+    while (node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  function showError(message){
+    jsonError.textContent = message;
+    jsonError.hidden = false;
+  }
+
+  function clearError(){
+    jsonError.hidden = true;
+    jsonError.textContent = "";
+  }
+
+  function setStatus(text, busy){
+    statusLine.textContent = text || "";
+    statusLine.classList.toggle("busy", !!busy);
+  }
+
+  // ---------- backend status / schema ----------
+  function setBackendStatus(ok, text){
+    backendDot.classList.remove("ok", "bad");
+    backendDot.classList.add(ok ? "ok" : "bad");
+    backendStatusTx.textContent = text;
+  }
+
+  function renderTypeChips(types){
+    clearChildren(typeChips);
+    types.forEach(function(t){
+      typeChips.appendChild(el("span", { className: "type-chip", text: t }));
+    });
+    schemaBar.hidden = types.length === 0;
+  }
+
+  function loadSchema(){
+    fetch("/api/schema")
+      .then(function(res){
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function(data){
+        setBackendStatus(true, "Backend connected");
+        var types = (data && Array.isArray(data.event_types)) ? data.event_types : FALLBACK_EVENT_TYPES;
+        renderTypeChips(types);
+      })
+      .catch(function(){
+        setBackendStatus(false, "Backend unreachable — start the server");
+        renderTypeChips(FALLBACK_EVENT_TYPES);
+      });
+  }
+
+  // ---------- client-side validation ----------
+  function isPlainObject(v){
+    return v !== null && typeof v === "object" && !Array.isArray(v);
+  }
+
+  function validateOneEvent(ev, idx){
+    var where = "Event #" + (idx + 1);
+    if (!isPlainObject(ev)){
+      throw new Error(where + " is not a JSON object.");
+    }
+    if (typeof ev.event !== "string" || ev.event.trim() === ""){
+      throw new Error(where + ": \"event\" is required and must be a non-empty string.");
+    }
+    if (typeof ev.half !== "number" || !isFinite(ev.half)){
+      throw new Error(where + ": \"half\" is required and must be a number.");
+    }
+    if (typeof ev.minute !== "number" || !isFinite(ev.minute)){
+      throw new Error(where + ": \"minute\" is required and must be a number.");
+    }
+    if (typeof ev.home !== "string" || ev.home.trim() === ""){
+      throw new Error(where + ": \"home\" is required and must be a non-empty string.");
+    }
+    if (typeof ev.away !== "string" || ev.away.trim() === ""){
+      throw new Error(where + ": \"away\" is required and must be a non-empty string.");
+    }
+    if (ev.important !== undefined && typeof ev.important !== "boolean"){
+      throw new Error(where + ": \"important\", if present, must be true or false.");
+    }
+    if (ev.players !== undefined){
+      if (!Array.isArray(ev.players)){
+        throw new Error(where + ": \"players\", if present, must be an array.");
+      }
+      ev.players.forEach(function(p, pIdx){
+        if (!isPlainObject(p) || typeof p.name !== "string" || p.name.trim() === ""){
+          throw new Error(where + ": player #" + (pIdx + 1) + " must be an object with a non-empty \"name\".");
+        }
+        if (p.side !== undefined && p.side !== "home" && p.side !== "away" && p.side !== "unknown"){
+          throw new Error(where + ": player #" + (pIdx + 1) + " \"side\" must be \"home\", \"away\" or \"unknown\".");
+        }
+      });
+    }
+  }
+
+  // Accepts: a single event object, a top-level array of event objects, or an
+  // object with an "events" array. Returns { events: [...] } or throws Error
+  // with a human-readable message for inline display.
+  function parseAndValidate(text){
+    if (!text || !text.trim()){
+      throw new Error("The JSON input is empty.");
+    }
+    var parsed;
+    try{
+      parsed = JSON.parse(text);
+    } catch (e){
+      throw new Error("Invalid JSON: " + e.message);
+    }
+
+    var events;
+    if (Array.isArray(parsed)){
+      events = parsed;
+    } else if (isPlainObject(parsed) && Array.isArray(parsed.events)){
+      events = parsed.events;
+    } else if (isPlainObject(parsed) && typeof parsed.event === "string"){
+      events = [parsed];
+    } else {
+      throw new Error(
+        "The JSON must be one of:\n" +
+        "  - a single event object (with an \"event\" field), or\n" +
+        "  - a JSON array of event objects, or\n" +
+        "  - an object with an \"events\" array."
+      );
+    }
+
+    if (events.length === 0){
+      throw new Error("No events found in the input.");
+    }
+    events.forEach(function(ev, idx){ validateOneEvent(ev, idx); });
+
+    return { events: events };
+  }
+
+  // ---------- formatting helpers ----------
+  function pad2(n){
+    var s = String(Math.trunc(Math.abs(n)));
+    return s.length < 2 ? ("0" + s) : s;
+  }
+
+  // The event carries a half and a whole minute; there are no seconds. Render as
+  // "H1 29'" (football convention). An earlier mm:mm form read as 29min 29sec,
+  // which was misleading.
+  function formatTimestamp(half, minute){
+    var h = (half === undefined || half === null) ? "?" : half;
+    var mm = (minute === undefined || minute === null) ? "0" : minute;
+    return "H" + h + " " + mm + "'";
+  }
+
+  function safeNumber(n, fallback){
+    return (typeof n === "number" && isFinite(n)) ? n : fallback;
+  }
+
+  // ---------- rendering ----------
+  function buildEventCard(result){
+    var important = !!result.important;
+    var card = el("div", { className: "event-card" + (important ? " important" : "") });
+
+    var top = el("div", { className: "event-top" });
+    var topLeft = el("div", { className: "event-top-left" });
+    topLeft.appendChild(el("span", { className: "event-time", text: formatTimestamp(result.half, result.minute) }));
+    topLeft.appendChild(el("span", { className: "event-type-badge", text: (typeof result.event === "string" ? result.event : "unknown") }));
+    if (important){
+      topLeft.appendChild(el("span", { className: "important-badge", text: "important" }));
+    }
+    top.appendChild(topLeft);
+
+    var mode = (result.mode === "variation") ? "variation" : "greedy";
+    top.appendChild(el("span", { className: "mode-badge " + mode, text: mode }));
+    card.appendChild(top);
+
+    var commentaryText = (typeof result.commentary === "string" && result.commentary.length)
+      ? result.commentary
+      : "(no commentary returned)";
+    card.appendChild(el("div", { className: "commentary", text: commentaryText }));
+
+    // meta row: inference time + (variation-only) sampling params
+    var meta = el("div", { className: "meta-row" });
+    var msSpan = el("span");
+    msSpan.appendChild(document.createTextNode("Inference: "));
+    var msB = el("b", { text: safeNumber(result.ms, "?") + " ms" });
+    msSpan.appendChild(msB);
+    meta.appendChild(msSpan);
+
+    if (mode === "variation"){
+      if (result.temperature !== undefined && result.temperature !== null){
+        var tSpan = el("span");
+        tSpan.appendChild(document.createTextNode("Temperature: "));
+        tSpan.appendChild(el("b", { text: String(result.temperature) }));
+        meta.appendChild(tSpan);
+      }
+      if (result.top_p !== undefined && result.top_p !== null){
+        var pSpan = el("span");
+        pSpan.appendChild(document.createTextNode("Top-p: "));
+        pSpan.appendChild(el("b", { text: String(result.top_p) }));
+        meta.appendChild(pSpan);
+      }
+      if (result.seed !== undefined && result.seed !== null){
+        var sSpan = el("span");
+        sSpan.appendChild(document.createTextNode("Seed: "));
+        sSpan.appendChild(el("b", { text: String(result.seed) }));
+        meta.appendChild(sSpan);
+      }
+    }
+    card.appendChild(meta);
+
+    // structured input — the encoder input, CRITICAL for the presentation
+    var siBlock = el("div", { className: "field-block" });
+    var siLabel = el("div", { className: "field-label" });
+    siLabel.appendChild(document.createTextNode("Encoder input (structured representation)"));
+    siLabel.appendChild(el("span", { className: "hint", text: "JSON → structured text → Transformer" }));
+    siBlock.appendChild(siLabel);
+    var siPre = el("div", { className: "structured-input" });
+    siPre.textContent = (typeof result.structured_input === "string") ? result.structured_input : "";
+    siBlock.appendChild(siPre);
+    card.appendChild(siBlock);
+
+    // grounding — tag -> real name map
+    var gBlock = el("div", { className: "field-block" });
+    gBlock.appendChild(el("div", { className: "field-label", text: "Grounding (name substituted after generation)" }));
+    var grounding = result.grounding;
+    if (grounding && typeof grounding === "object" && Object.keys(grounding).length){
+      var gList = el("div", { className: "grounding-list" });
+      Object.keys(grounding).forEach(function(tag){
+        var chip = el("span", { className: "grounding-chip" });
+        chip.appendChild(el("span", { className: "tag", text: tag }));
+        chip.appendChild(document.createTextNode("→ " + grounding[tag]));
+        gList.appendChild(chip);
+      });
+      gBlock.appendChild(gList);
+    } else {
+      gBlock.appendChild(el("div", { className: "grounding-empty", text: "(no grounded entities for this event)" }));
+    }
+    card.appendChild(gBlock);
+
+    return card;
+  }
+
+  function buildErrorCard(rawResult, err){
+    var card = el("div", { className: "event-card render-error" });
+    card.appendChild(el("div", { className: "field-label", text: "Could not render this result" }));
+    card.appendChild(el("div", { className: "commentary", text: (err && err.message) ? err.message : String(err) }));
+    return card;
+  }
+
+  function renderTimeline(results, mode){
+    clearChildren(resultsEl);
+
+    if (!Array.isArray(results) || results.length === 0){
+      resultsEl.appendChild(el("div", { className: "placeholder", text: "The server returned no results." }));
+      resultsSummary.textContent = "";
+      return;
+    }
+
+    // Ordered by half then minute, per spec — timestamps come from the API response.
+    var ordered = results.slice().sort(function(a, b){
+      var ha = safeNumber(a.half, 0), hb = safeNumber(b.half, 0);
+      if (ha !== hb) return ha - hb;
+      var ma = safeNumber(a.minute, 0), mb = safeNumber(b.minute, 0);
+      return ma - mb;
+    });
+
+    var timeline = el("div", { className: "timeline" });
+    ordered.forEach(function(result){
+      var card;
+      try{
+        card = buildEventCard(result);
+      } catch (e){
+        card = buildErrorCard(result, e);
+      }
+      timeline.appendChild(card);
+    });
+    resultsEl.appendChild(timeline);
+
+    resultsSummary.textContent = ordered.length + " event" + (ordered.length === 1 ? "" : "s") +
+      " · mode: " + (mode === "variation" ? "variation" : "greedy");
+  }
+
+  // ---------- request lifecycle ----------
+  var inFlight = false;
+
+  function setLoading(loading, mode){
+    inFlight = loading;
+    btnGenerate.disabled = loading;
+    btnVariation.disabled = loading;
+    exampleSelect.disabled = loading;
+    if (loading){
+      var label = mode === "variation" ? "Generating variation..." : "Generating...";
+      (mode === "variation" ? btnVariation : btnGenerate).textContent = label;
+      setStatus(label, true);
+    } else {
+      btnGenerate.textContent = BTN_LABELS.generate;
+      btnVariation.textContent = BTN_LABELS.variation;
+      setStatus("", false);
+    }
+  }
+
+  function runGenerate(mode){
+    if (inFlight) return;
+    clearError();
+
+    var validated;
+    try{
+      validated = parseAndValidate(jsonInput.value);
+    } catch (e){
+      showError(e.message);
+      return;
+    }
+
+    setLoading(true, mode);
+
+    var payload = JSON.stringify({ events: validated.events, mode: mode });
+
+    // Network-level failure (server not running, connection refused, etc.) is
+    // distinguished from a well-formed error response (HTTP 400 with a JSON
+    // {"error": ...} body) so the backend status dot is not misleadingly flipped
+    // to "unreachable" just because the request itself was rejected.
+    fetch("/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload
+    })
+      .then(
+        function(res){
+          return res.json()
+            .catch(function(){
+              throw new Error("The server returned a non-JSON response (HTTP " + res.status + ").");
+            })
+            .then(function(data){
+              // Parsing succeeded, so the backend is up and responding, whatever
+              // the HTTP status turns out to be.
+              setBackendStatus(true, "Backend connected");
+              if (!res.ok){
+                var msg = (data && typeof data.error === "string")
+                  ? data.error
+                  : ("Server error (HTTP " + res.status + ").");
+                throw new Error(msg);
+              }
+              if (!data || !Array.isArray(data.results)){
+                throw new Error("Malformed server response: missing \"results\" array.");
+              }
+              renderTimeline(data.results, mode);
+            });
+        },
+        function(networkErr){
+          setBackendStatus(false, "Backend unreachable — start the server");
+          throw new Error("Could not reach the server: " + (networkErr && networkErr.message ? networkErr.message : String(networkErr)));
+        }
+      )
+      .catch(function(err){
+        showError(err && err.message ? err.message : String(err));
+      })
+      .then(function(){
+        setLoading(false, mode);
+      });
+  }
+
+  // ---------- wiring ----------
+  btnGenerate.addEventListener("click", function(){ runGenerate("greedy"); });
+  btnVariation.addEventListener("click", function(){ runGenerate("variation"); });
+
+  exampleSelect.addEventListener("change", function(){
+    var key = exampleSelect.value;
+    if (!key || !EXAMPLES[key]) return;
+    jsonInput.value = JSON.stringify(EXAMPLES[key], null, 2);
+    clearError();
+    clearChildren(resultsEl);
+    resultsEl.appendChild(el("div", { className: "placeholder", text: "Press \"Generate Commentary\" to run the Transformer on the event JSON on the left." }));
+    resultsSummary.textContent = "";
+  });
+
+  // ---------- initial state ----------
+  jsonInput.value = JSON.stringify(EXAMPLES.goal, null, 2);
+  loadSchema();
+
+})();
+</script>
+</body>
+</html>

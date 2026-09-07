@@ -1,0 +1,21 @@
+# Football Commentary Generator - core requirements
+# Verified against: Python 3.13.15, Windows 11, RTX 4060 (CUDA available)
+
+# --- Dataset access ---
+SoccerNet==0.1.62          # official caption-2024 downloader + getListGames
+
+# --- Model / training (already installed with CUDA 12.8 wheels) ---
+torch>=2.9.0
+numpy>=2.2.0
+tqdm>=4.67.0
+
+# --- Optional, stage 8 only (BLEU-4). Do not let this block the model. ---
+# sacrebleu>=2.4.0
+
+# --- Optional, stage 9 only (render_demo.py: TTS -> video -> Whisper ASR).
+# This is DEMO ASSEMBLY with pretrained tools, NOT part of our Transformer.
+# Install only after the generation baseline works.
+# openai-whisper
+# pyttsx3
+# opencv-python        # already present: 4.12.0.88
+# imageio-ffmpeg

@@ -1,0 +1,114 @@
+[
+  {
+    "label": "soccer-ball",
+    "gameTime": "1 - 29:51",
+    "input": "<EVT> soccer-ball <HALF> 1 <MIN> 29 <IMP> 1 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home <P> <PLAYER_2> home",
+    "reference_tagged": "It's a goal! <PLAYER_1> (<TEAM>) scores with a brilliant shot into the bottom right corner after being released inside the box by a superb lofted pass from <PLAYER_2>. The score is now 1:0.",
+    "generated_tagged": "goal! <PLAYER_1> (<TEAM>) collects a pass and from inside the box he lifts the ball over <PLAYER_2>, who was off his line. what a finish that is! 0: 2.",
+    "generated_tagged_raw_debug": "goal! <PLAYER_1> (<TEAM>) collects a pass and from inside the box he lifts the ball over <PLAYER_2>, who was off his line. what a finish that is! 0: 2.",
+    "post_decode_violations": 0,
+    "reference": "It's a goal! Ander Herrera (<TEAM>) scores with a brilliant shot into the bottom right corner after being released inside the box by a superb lofted pass from Ashley Young. The score is now 1:0.",
+    "generated": "goal! Ander Herrera (<TEAM>) collects a pass and from inside the box he lifts the ball over Ashley Young, who was off his line. what a finish that is! 0: 2.",
+    "grounding": {
+      "<PLAYER_1>": "Ander Herrera",
+      "<PLAYER_2>": "Ashley Young"
+    }
+  },
+  {
+    "label": "y-card",
+    "gameTime": "2 - 49:58",
+    "input": "<EVT> y-card <HALF> 2 <MIN> 49 <IMP> 1 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+    "reference_tagged": "This yellow card was deserved. The tackle by <PLAYER_1> (<TEAM>) was quite harsh and <REFEREE> didn't hesitate to show him a yellow card.",
+    "generated_tagged": "<PLAYER_1> (<TEAM>) is booked after bringing down an opponent. <REFEREE> had an easy - decision to make.",
+    "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is booked after bringing down an opponent. <REFEREE> had an easy - decision to make.",
+    "post_decode_violations": 0,
+    "reference": "This yellow card was deserved. The tackle by Ander Herrera (<TEAM>) was quite harsh and <REFEREE> didn't hesitate to show him a yellow card.",
+    "generated": "Ander Herrera (<TEAM>) is booked after bringing down an opponent. <REFEREE> had an easy - decision to make.",
+    "grounding": {
+      "<PLAYER_1>": "Ander Herrera"
+    }
+  },
+  {
+    "label": "substitution",
+    "gameTime": "2 - 44:57",
+    "input": "<EVT> substitution <HALF> 2 <MIN> 44 <IMP> 1 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away <P> <PLAYER_2> away",
+    "reference_tagged": "Substitution. <PLAYER_1> leaves the pitch and is replaced by <PLAYER_2> (<TEAM>).",
+    "generated_tagged": "the manager has decided to make a substitution and <PLAYER_1> walks off the pitch to be replaced by <PLAYER_2> (<TEAM>).",
+    "generated_tagged_raw_debug": "the manager has decided to make a substitution and <PLAYER_1> walks off the pitch to be replaced by <PLAYER_2> (<TEAM>).",
+    "post_decode_violations": 0,
+    "reference": "Substitution. Alexis Sanchez leaves the pitch and is replaced by Mathieu Flamini (<TEAM>).",
+    "generated": "the manager has decided to make a substitution and Alexis Sanchez walks off the pitch to be replaced by Mathieu Flamini (<TEAM>).",
+    "grounding": {
+      "<PLAYER_1>": "Alexis Sanchez",
+      "<PLAYER_2>": "Mathieu Flamini"
+    }
+  },
+  {
+    "label": "corner",
+    "gameTime": "2 - 35:15",
+    "input": "<EVT> corner <HALF> 2 <MIN> 35 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+    "reference_tagged": "<PLAYER_1> (<TEAM>) decides to take a short corner instead of crossing into the box.",
+    "generated_tagged": "<PLAYER_1> (<TEAM>) launches a powerful cross from the corner into the box, but the ball is intercepted by the defender.",
+    "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) launches a powerful cross from the corner into the box, but the ball is intercepted by the defender.",
+    "post_decode_violations": 0,
+    "reference": "Ashley Young (<TEAM>) decides to take a short corner instead of crossing into the box.",
+    "generated": "Ashley Young (<TEAM>) launches a powerful cross from the corner into the box, but the ball is intercepted by the defender.",
+    "grounding": {
+      "<PLAYER_1>": "Ashley Young"
+    }
+  },
+  {
+    "label": "injury",
+    "gameTime": "2 - 26:50",
+    "input": "<EVT> injury <HALF> 2 <MIN> 26 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+    "reference_tagged": "<PLAYER_1> (<TEAM>) is clearly asking for some medical attention with his painful gestures. The extent of his injury is yet to be discovered.",
+    "generated_tagged": "<PLAYER_1> (<TEAM>) is clearly asking for some medical attention with his painful gestures. the extent of his injury is yet to be discovered.",
+    "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is clearly asking for some medical attention with his painful gestures. the extent of his injury is yet to be discovered.",
+    "post_decode_violations": 0,
+    "reference": "David de Gea (<TEAM>) is clearly asking for some medical attention with his painful gestures. The extent of his injury is yet to be discovered.",
+    "generated": "David de Gea (<TEAM>) is clearly asking for some medical attention with his painful gestures. the extent of his injury is yet to be discovered.",
+    "grounding": {
+      "<PLAYER_1>": "David de Gea"
+    }
+  },
+  {
+    "label": "r-card",
+    "gameTime": "2 - 08:58",
+    "input": "<EVT> r-card <HALF> 2 <MIN> 8 <IMP> 1 <HOME> west brom <AWAY> chelsea <P> <PLAYER_1> away",
+    "reference_tagged": "<PLAYER_1> (<TEAM>) is sent off! Several teammates attempts to argue with the referee, but the decision has been made - it's beyond the point of no return.",
+    "generated_tagged": "<PLAYER_1> (<TEAM>) is shown a red card by the referee for making a challenge on his opponent, but he looks angry with the decision.",
+    "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is shown a red card by the referee for making a challenge on his opponent, but he looks angry with the decision.",
+    "post_decode_violations": 0,
+    "reference": "John Terry (<TEAM>) is sent off! Several teammates attempts to argue with the referee, but the decision has been made - it's beyond the point of no return.",
+    "generated": "John Terry (<TEAM>) is shown a red card by the referee for making a challenge on his opponent, but he looks angry with the decision.",
+    "grounding": {
+      "<PLAYER_1>": "John Terry"
+    }
+  },
+  {
+    "label": "penalty",
+    "gameTime": "1 - 12:41",
+    "input": "<EVT> penalty <HALF> 1 <MIN> 12 <IMP> 1 <HOME> west brom <AWAY> chelsea <P> <PLAYER_1> away",
+    "reference_tagged": "<PLAYER_1> (<TEAM>) brings his opponent down. <REFEREE> has a clear sight of it and blows his whistle for a foul. That's a penalty to <TEAM>! They have a good chance to score now.",
+    "generated_tagged": "<PLAYER_1> (<TEAM>) fails to score from the penalty spot. the ball goes out of play. <TEAM> are awarded a penalty kick!",
+    "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) fails to score from the penalty spot. the ball goes out of play. <TEAM> are awarded a penalty kick!",
+    "post_decode_violations": 0,
+    "reference": "Nemanja Matic (<TEAM>) brings his opponent down. <REFEREE> has a clear sight of it and blows his whistle for a foul. That's a penalty to <TEAM>! They have a good chance to score now.",
+    "generated": "Nemanja Matic (<TEAM>) fails to score from the penalty spot. the ball goes out of play. <TEAM> are awarded a penalty kick!",
+    "grounding": {
+      "<PLAYER_1>": "Nemanja Matic"
+    }
+  },
+  {
+    "label": "<no_event>",
+    "gameTime": "2 - 50:59",
+    "input": "<EVT> <no_event> <HALF> 2 <MIN> 50 <IMP> 0 <HOME> manchester united <AWAY> arsenal",
+    "reference_tagged": "We saw a few chances and nice plays, but the overall impression of the game is uninspiring and not hugely entertaining. A very even game was seen on the pitch today. Both sides tried to combine well and to keep the ball at their feet.",
+    "generated_tagged": "the fans in the stadium certainly won't regret buying tickets as they witnessed a great game today. the home side were dominant and dictated the tempo of the game. the home team tried to prevail using combination football, while the away side adopted a defensive style of play.",
+    "generated_tagged_raw_debug": "the fans in the stadium certainly won't regret buying tickets as they witnessed a great game today. the home side were dominant and dictated the tempo of the game. the home team tried to prevail using combination football, while the away side adopted a defensive style of play.",
+    "post_decode_violations": 0,
+    "reference": "We saw a few chances and nice plays, but the overall impression of the game is uninspiring and not hugely entertaining. A very even game was seen on the pitch today. Both sides tried to combine well and to keep the ball at their feet.",
+    "generated": "the fans in the stadium certainly won't regret buying tickets as they witnessed a great game today. the home side were dominant and dictated the tempo of the game. the home team tried to prevail using combination football, while the away side adopted a defensive style of play.",
+    "grounding": {}
+  }
+]

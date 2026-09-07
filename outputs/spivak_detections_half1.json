@@ -1,0 +1,56 @@
+[
+ {
+  "t": 560.5,
+  "spivak_class": "Corner",
+  "label": "corner",
+  "confidence": 0.8006157875061035
+ },
+ {
+  "t": 586.0,
+  "spivak_class": "Corner",
+  "label": "corner",
+  "confidence": 0.8720542192459106
+ },
+ {
+  "t": 857.0,
+  "spivak_class": "Corner",
+  "label": "corner",
+  "confidence": 0.6246603727340698
+ },
+ {
+  "t": 1710.0,
+  "spivak_class": "Yellow card",
+  "label": "y-card",
+  "confidence": 0.4340965151786804
+ },
+ {
+  "t": 1760.5,
+  "spivak_class": "Goal",
+  "label": "soccer-ball",
+  "confidence": 0.9022738933563232
+ },
+ {
+  "t": 2144.5,
+  "spivak_class": "Yellow card",
+  "label": "y-card",
+  "confidence": 0.6654887795448303
+ },
+ {
+  "t": 2446.0,
+  "spivak_class": "Yellow card",
+  "label": "y-card",
+  "confidence": 0.609033465385437
+ },
+ {
+  "t": 2470.5,
+  "spivak_class": "Corner",
+  "label": "corner",
+  "confidence": 0.6474037170410156
+ },
+ {
+  "t": 2690.0,
+  "spivak_class": "Corner",
+  "label": "corner",
+  "confidence": 0.4286024868488312
+ }
+]

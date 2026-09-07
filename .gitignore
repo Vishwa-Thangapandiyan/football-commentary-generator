@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# NDA-COVERED SoccerNet MEDIA - MUST NEVER BE COMMITTED
+# Broadcast video and derived features are covered by the SoccerNet NDA.
+# Anyone else must download them with their OWN NDA password.
+# ---------------------------------------------------------------------------
+data/caption-2024/
+outputs/web/
+*.mkv
+*.mp4
+*.npy
+
+# ---------------------------------------------------------------------------
+# Large third-party model - redistributable (CC-BY-4.0) but ~75 MB.
+# Re-fetch with the curl commands in SETUP.md instead of committing.
+# ---------------------------------------------------------------------------
+models/spivak/
+
+# ---------------------------------------------------------------------------
+# Checkpoints: ignore all EXCEPT the final trained model, which is committed
+# (34 MB, under GitHub's 100 MB limit) so a clone can run without retraining.
+# ---------------------------------------------------------------------------
+checkpoints/*
+!checkpoints/full_best.pt
+
+# Auto-downloaded on first use by ultralytics
+yolov8n.pt
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+outputs/*.log
