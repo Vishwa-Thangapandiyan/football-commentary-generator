@@ -1,0 +1,258 @@
+<meta charset="utf-8">
+<title>Football Commentary Generator</title>
+<style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --panel2:#1c2128; --border:#30363d;
+  --text:#e6edf3; --muted:#8b949e;
+  --video:#f0883e;      /* video-derived */
+  --annot:#58a6ff;      /* annotation-derived */
+  --green:#3fb950; --purple:#a371f7; --mono:#010409;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Segoe UI",system-ui,Arial,sans-serif;font-size:15px;line-height:1.45}
+.wrap{max-width:1500px;margin:0 auto;padding:18px 22px 60px}
+h1{font-size:22px;margin:0 0 2px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+
+.legend{display:flex;gap:14px;flex-wrap:wrap;background:var(--panel);
+  border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:16px}
+.leg{flex:1 1 320px;border-left:3px solid var(--border);padding-left:11px}
+.leg.v{border-left-color:var(--video)} .leg.a{border-left-color:var(--annot)}
+.leg b{display:block;font-size:12.5px;letter-spacing:.4px;margin-bottom:3px}
+.leg.v b{color:var(--video)} .leg.a b{color:var(--annot)}
+.leg span{font-size:12.5px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:minmax(520px,1fr) 430px;gap:18px;align-items:start}
+@media(max-width:1150px){.grid{grid-template-columns:1fr}}
+
+.stage{position:relative;background:#000;border-radius:10px;overflow:hidden}
+video{width:100%;display:block}
+canvas#ov{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.vbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+button{background:var(--panel2);color:var(--text);border:1px solid var(--border);
+  padding:8px 13px;border-radius:7px;cursor:pointer;font-size:13.5px}
+button:hover{border-color:var(--annot)}
+button.primary{background:#1f6feb;border-color:#1f6feb;color:#fff}
+button:disabled{opacity:.45;cursor:default}
+.tog{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+.k{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:7px}
+#feed{max-height:66vh;overflow-y:auto}
+.card{border-left:3px solid var(--border);background:var(--panel2);
+  border-radius:0 8px 8px 0;padding:11px 13px;margin-bottom:11px}
+.card.video{border-left-color:var(--video)}
+.card.annotation{border-left-color:var(--annot)}
+.hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;margin-bottom:6px}
+.tm{font-weight:700;font-variant-numeric:tabular-nums}
+.tag{padding:2px 8px;border-radius:999px;border:1px solid;font-size:11px;
+  text-transform:uppercase;letter-spacing:.4px}
+.tag.video{color:var(--video);border-color:var(--video)}
+.tag.annotation{color:var(--annot);border-color:var(--annot)}
+.ev{padding:2px 8px;border-radius:999px;background:#21262d;border:1px solid var(--border);font-size:11px}
+.txt{font-size:15.5px;color:#f0f6fc;margin:4px 0 7px}
+.mono{font-family:Consolas,monospace;font-size:11.5px;color:#7ee787;background:var(--mono);
+  border:1px solid var(--border);border-radius:6px;padding:8px 10px;word-break:break-word;margin-top:6px}
+.meta{font-size:11.5px;color:var(--muted);margin-top:5px}
+.who{font-size:12px;color:var(--annot);margin-bottom:4px}
+.nonames{font-size:11.5px;color:var(--video);font-style:italic}
+.vb{background:transparent;border:1px solid var(--border);color:var(--muted);
+  font-size:11.5px;padding:3px 9px;border-radius:5px;cursor:pointer;margin-top:7px}
+.vb:hover{border-color:var(--purple);color:var(--purple)}
+.varbox{margin-top:7px;padding:7px 9px;background:#1b2330;border-left:2px solid var(--purple);border-radius:0 5px 5px 0}
+.jsonbox{background:var(--mono);border:1px solid var(--border);border-radius:6px;
+  padding:10px;font-family:Consolas,monospace;font-size:11px;color:#a5d6ff;
+  white-space:pre-wrap;word-break:break-word;max-height:320px;overflow:auto;margin-top:8px}
+.vh{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--purple);margin-bottom:3px}
+#list{max-height:190px;overflow-y:auto;font-size:12.5px}
+.row{padding:4px 7px;border-radius:5px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.row:hover{background:var(--panel2)}
+.dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.dot.video{background:var(--video)} .dot.annotation{background:var(--annot)}
+</style>
+
+<div class="wrap">
+<h1>Football Commentary Generator</h1>
+<div class="sub">Manchester United 1&ndash;1 Arsenal &middot; official SoccerNet TEST split &middot;
+every line generated at runtime by the Transformer</div>
+
+<div class="legend">
+  <div class="leg v"><b>&#9679; VIDEO-DERIVED</b><span>Detected from the video by a
+  pretrained action-spotting model over this clip's frame features. Coarse events only
+  (goal, corner). <b style="display:inline;color:inherit">No player identity</b> &mdash;
+  identity is not recoverable from video, so the model is given anonymous
+  <span style="font-family:Consolas,monospace">&lt;PLAYER_k&gt;</span> slots and the
+  output keeps those placeholders instead of inventing names.</span></div>
+  <div class="leg a"><b>&#9679; ANNOTATION-DERIVED</b><span>SoccerNet's human commentary
+  annotations, re-labelled into fine-grained actions (pass / shot / cross / foul&hellip;).
+  These carry grounded players, so these lines <b style="display:inline;color:inherit">do
+  have names</b>. Not detected from the video.</span></div>
+</div>
+
+<div class="grid">
+  <div>
+    <div class="stage">
+      <video id="v" controls preload="metadata" src="/video"></video>
+      <canvas id="ov"></canvas>
+    </div>
+    <div class="vbar">
+      <button class="primary" onclick="jumpGoal()">Jump to the GOAL</button>
+      <button onclick="jumpFirst()">First event</button>
+      <button onclick="resetFeed()">Reset feed</button>
+      <label class="tog"><input type="checkbox" id="yolo" checked> YOLO person boxes</label>
+      <label class="tog"><input type="checkbox" id="auto" checked> auto-generate at events</label>
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <div class="k">Event timeline &mdash; click to jump</div>
+      <div id="list"></div>
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <div class="k">Scope</div>
+      <div style="font-size:12.5px;color:var(--muted)">
+      YOLO locates <i>people</i> only &mdash; it never identifies anyone, and also
+      detects officials and crowd. Action spotting supplies event type and timestamp,
+      not identity. The Transformer generates all commentary text; the millisecond
+      timing shown on each line is real server-side decoding.</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="k">Live commentary feed</div>
+    <div id="feed"></div>
+  </div>
+</div>
+</div>
+
+<script>
+var EV=[],YB=null,done={},v=document.getElementById('v'),ov=document.getElementById('ov');
+function esc(s){var d=document.createElement('div');d.innerText=s==null?'':s;return d.innerHTML}
+function fmt(t){return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
+
+fetch('/api/events').then(r=>r.json()).then(d=>{EV=d;drawList()});
+fetch('/api/yolo').then(r=>r.json()).then(d=>{YB=d});
+
+function drawList(){
+  var h='';
+  EV.forEach(function(e,i){
+    h+='<div class="row" onclick="jump('+i+')"><span class="dot '+e.source+'"></span>'
+      +'<b style="min-width:46px">'+fmt(e.t)+'</b><span>'+esc(e.event)+'</span>'
+      +(e.confidence!=null?'<span style="color:var(--muted)">conf '+e.confidence.toFixed(2)+'</span>':'')
+      +(e.narratable===false?'<span style="color:var(--video);font-size:11px">detection only</span>':'')
+      +'</div>';
+  });
+  document.getElementById('list').innerHTML=h;
+}
+function jump(i){
+  if(!EV[i])return;
+  v.currentTime=Math.max(0,EV[i].t-4); lastT=v.currentTime; v.play();
+  fire(i);            // show it now rather than after a 4s wait
+}
+function jumpGoal(){var i=EV.findIndex(e=>e.event==='soccer-ball');if(i<0)i=0;jump(i);}
+function jumpFirst(){jump(0);}
+function resetFeed(){done={};document.getElementById('feed').innerHTML='';}
+
+function card(d){
+  var el=document.createElement('div'); el.className='card '+d.source;
+  var np = Object.keys(d.players||{}).length===0;
+  var who = !np
+      ? '<div class="who">'+esc(Object.entries(d.players).map(x=>x[0]+' = '+x[1]).join('   '))+'</div>'
+      : (d.source==='video'
+          ? '<div class="nonames">no player identity &mdash; not recoverable from video</div>'
+          : '<div class="nonames" style="color:var(--muted)">team-level commentary &mdash; this annotation names no individual player</div>');
+  el.innerHTML='<div class="hd"><span class="tm">'+fmt(d.t)+'</span>'
+    +'<span class="tag '+d.source+'">'+(d.source==='video'?'video-derived':'annotation')+'</span>'
+    +'<span class="ev">'+esc(d.event)+'</span>'
+    +(d.confidence!=null?'<span style="color:var(--muted);font-size:11.5px">detector '+d.confidence.toFixed(2)+'</span>':'')
+    +'</div>'+who
+    +'<div class="txt">'+esc(d.commentary)+'</div>'
+    +'<div class="mono">'+esc(d.input)+'</div>'
+    +'<div class="meta">'+d.mode+' &middot; generated live in '+d.ms+' ms'
+      +(d.seed!=null?' &middot; seed '+d.seed:'')+'</div>'
+    +(d.slots_note?'<div class="meta" style="color:var(--video)">'+esc(d.slots_note)+'</div>':'')
+    +'<button class="vb" onclick="vary('+d.id+',this)">Generate Variation</button>'
+    +'<button class="vb" onclick="showJson(this)">Show JSON sent to the model</button>'
+    +'<pre class="jsonbox" hidden></pre>'
+    +'<div class="vars"></div>';
+  el.querySelector('.jsonbox').textContent=JSON.stringify({
+      canonical_event:d.canonical, structured_input:d.input,
+      model_output_tagged:d.commentary_tagged, decoding:{mode:d.mode,ms:d.ms,
+      seed:d.seed,temperature:d.temperature,top_p:d.top_p}},null,2);
+  return el;
+}
+function detectionCard(e){
+  var el=document.createElement('div'); el.className='card video';
+  el.innerHTML='<div class="hd"><span class="tm">'+fmt(e.t)+'</span>'
+    +'<span class="tag video">video-derived</span>'
+    +'<span class="ev">'+esc(e.event)+'</span>'
+    +'<span style="color:var(--muted);font-size:11.5px">detector '+e.confidence.toFixed(2)+'</span></div>'
+    +'<div class="txt" style="color:var(--video)">DETECTED FROM VIDEO &mdash; not narrated</div>'
+    +'<div class="meta" style="line-height:1.5">'+esc(e.no_narration_reason)+'</div>';
+  return el;
+}
+function fire(i,mode){
+  var key=i+':'+(mode||'greedy'); if(done[key])return; done[key]=1;
+  var e=EV[i];
+  if(e && e.narratable===false){
+    var el=detectionCard(e);
+    document.getElementById('feed').appendChild(el);
+    el.scrollIntoView({behavior:'smooth',block:'end'});
+    return;
+  }
+  fetch('/api/generate?idx='+i+'&mode='+(mode||'greedy')).then(r=>r.json()).then(d=>{
+    if(d.error){return}
+    var el=card(d); document.getElementById('feed').appendChild(el);
+    el.scrollIntoView({behavior:'smooth',block:'end'});
+  });
+}
+function showJson(btn){
+  var b=btn.parentElement.querySelector('.jsonbox');
+  b.hidden=!b.hidden;
+  btn.innerText=b.hidden?'Show JSON sent to the model':'Hide JSON';
+}
+function vary(i,btn){
+  btn.disabled=true;btn.innerText='Sampling...';
+  fetch('/api/generate?idx='+i+'&mode=variation').then(r=>r.json()).then(d=>{
+    var box=btn.parentElement.querySelector('.vars');
+    var el=document.createElement('div'); el.className='varbox';
+    el.innerHTML='<div class="vh">Variation &middot; T='+d.temperature+', top-p='+d.top_p
+      +' &middot; seed '+d.seed+'</div><div class="txt" style="font-size:14.5px">'
+      +esc(d.commentary)+'</div><div class="meta">sampled live in '+d.ms+' ms</div>';
+    box.appendChild(el); btn.disabled=false; btn.innerText='Generate Variation';
+  }).catch(function(){btn.disabled=false;btn.innerText='Generate Variation'});
+}
+
+var lastT=0;
+v.addEventListener('seeking',function(){ lastT=v.currentTime; });
+v.addEventListener('timeupdate',function(){
+  var t=v.currentTime;
+  if(document.getElementById('auto').checked){
+    // Fire any event the playhead CROSSED since the last tick. timeupdate only
+    // fires ~4x/sec, so a fixed window can be skipped entirely; crossing
+    // detection cannot. Guard against large jumps (seeks) with a 3s cap.
+    var lo=Math.min(lastT,t), hi=t;
+    if(hi-lo<3){ EV.forEach(function(e,i){ if(e.t>lo && e.t<=hi) fire(i); }); }
+  }
+  lastT=t;
+  drawBoxes(t);
+});
+
+function drawBoxes(t){
+  var c=ov.getContext('2d');
+  if(ov.width!==v.clientWidth||ov.height!==v.clientHeight){
+    ov.width=v.clientWidth; ov.height=v.clientHeight;
+  }
+  c.clearRect(0,0,ov.width,ov.height);
+  if(!YB||!YB.boxes||!document.getElementById('yolo').checked)return;
+  var step=1/(YB.fps_sampled||5), key=(Math.round(t/step)*step).toFixed(2);
+  var b=YB.boxes[key];
+  if(!b){ var alt=(Math.floor(t*(YB.fps_sampled||5))/(YB.fps_sampled||5)).toFixed(2); b=YB.boxes[alt]; }
+  if(!b)return;
+  var sx=ov.width/YB.frame_w, sy=ov.height/YB.frame_h;
+  c.strokeStyle='rgba(0,220,255,.9)'; c.lineWidth=1.5;
+  b.forEach(function(r){ c.strokeRect(r[0]*sx,r[1]*sy,(r[2]-r[0])*sx,(r[3]-r[1])*sy); });
+  c.fillStyle='rgba(0,220,255,.95)'; c.font='12px Consolas,monospace';
+  c.fillText('YOLO persons: '+b.length+'  (locations only, no identity)',8,16);
+}
+window.addEventListener('resize',function(){drawBoxes(v.currentTime)});
+</script>

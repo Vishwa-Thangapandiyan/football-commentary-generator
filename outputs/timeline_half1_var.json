@@ -1,0 +1,879 @@
+{
+  "game": "england_epl\\2014-2015\\2015-05-17 - 18-00 Manchester United 1 - 1 Arsenal",
+  "half": 1,
+  "n_events": 38,
+  "model": "checkpoints/v2_best.pt",
+  "note": "every commentary line generated at runtime by the Transformer; reference kept only for comparison",
+  "events": [
+    {
+      "game_time": "1 - 10:12",
+      "t_seconds": 612,
+      "event": "shot",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Chris Smalling"
+      },
+      "structured_input": "<EVT> shot <HALF> 1 <MIN> 10 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "commentary": "Chris Smalling (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "reference": "Chris Smalling (<TEAM>) is first to the rebound but his shot is blocked. Wow, what an escape there for the opposition. The referee blows his whistle, <TEAM> are awarded a corner kick.",
+      "variations": [
+        {
+          "seed": 313990879,
+          "commentary": "Chris Smalling (<TEAM>) gets to the ball from the resulting corner and tries his luck with a shot, but one of the defenders steps in to block the effort. the referee and his assistant both point at the corner flag. <TEAM> will have an opportunity to threaten the opposition's goal."
+        },
+        {
+          "seed": 320499240,
+          "commentary": "Chris Smalling (<TEAM>) misses a good chance to score. an inch - perfect cross into the box finds Chris Smalling (<TEAM>) who rises for a header, but sends the ball well over the bar."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 10:18",
+      "t_seconds": 618,
+      "event": "corner",
+      "from_v1_label": null,
+      "players": {
+        "<PLAYER_1>": "Juan Manuel Mata"
+      },
+      "structured_input": "<EVT> corner <HALF> 1 <MIN> 10 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) takes the corner but fails to find any of his teammates as he overhits the effort.",
+      "commentary": "Juan Manuel Mata (<TEAM>) takes the corner but fails to find any of his teammates as he overhits the effort.",
+      "reference": "Juan Manuel Mata (<TEAM>) quickly takes the corner kick with a short pass.",
+      "variations": [
+        {
+          "seed": 232985056,
+          "commentary": "Juan Manuel Mata (<TEAM>) launches an inaccurate corner kick into the penalty area."
+        },
+        {
+          "seed": 951866101,
+          "commentary": "Juan Manuel Mata (<TEAM>) will deliver the corner kick."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 10:27",
+      "t_seconds": 627,
+      "event": "cross",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "structured_input": "<EVT> cross <HALF> 1 <MIN> 10 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "commentary": "Ashley Young (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "reference": "Ashley Young (<TEAM>) delivers a promising cross into the box, but it's cleared.",
+      "variations": [
+        {
+          "seed": 225934613,
+          "commentary": "Ashley Young (<TEAM>) dinks a cross into the box in an attempt to find one of his teammates, but the defence manages to clear. the referee signals a corner kick to <TEAM>."
+        },
+        {
+          "seed": 778319461,
+          "commentary": "Ashley Young (<TEAM>) is unable to feed an accurate cross into the box."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 11:32",
+      "t_seconds": 692,
+      "event": "clearance",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Marouane Fellaini"
+      },
+      "structured_input": "<EVT> clearance <HALF> 1 <MIN> 11 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) tries to send the ball in front of the goal, but the opposition's defence averts the threat. the ball goes out of play. <TEAM> are awarded a corner kick.",
+      "commentary": "Marouane Fellaini (<TEAM>) tries to send the ball in front of the goal, but the opposition's defence averts the threat. the ball goes out of play. <TEAM> are awarded a corner kick.",
+      "reference": "The game is interrupted, a clear handball by Marouane Fellaini (<TEAM>).",
+      "variations": [
+        {
+          "seed": 2088788019,
+          "commentary": "good clearance! Marouane Fellaini (<TEAM>) receives a brilliant short pass and finds himself in a good position inside the box, but he's robbed of the ball by one of the defending players. the linesman points to the corner flag, <TEAM> are going to take it."
+        },
+        {
+          "seed": 1042365837,
+          "commentary": "Marouane Fellaini (<TEAM>) tries to send the ball in front of the goal, but the opposition's defence averts the threat. <TEAM> force a corner. their opponents will face another attacking threat."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 12:45",
+      "t_seconds": 765,
+      "event": "cross",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "structured_input": "<EVT> cross <HALF> 1 <MIN> 12 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "commentary": "Ashley Young (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "reference": "Ashley Young (<TEAM>) sends a lofted cross into the penalty area. Unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it.",
+      "variations": [
+        {
+          "seed": 785343965,
+          "commentary": "Ashley Young (<TEAM>) clips an inviting cross into the box, but there's no one in a position to get on the end of it."
+        },
+        {
+          "seed": 1003876954,
+          "commentary": "Ashley Young (<TEAM>) clips an inviting cross into the box, but there's no one in a position to get on the end of it."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 13:28",
+      "t_seconds": 808,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Hector Bellerin"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 13 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Hector Bellerin (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Hector Bellerin (<TEAM>) was trying to get to the ball but clattered into the legs of the opponent as well. <REFEREE> blows his whistle for an infringement. <TEAM> win a free kick. It's a promising situation for a direct shot.",
+      "variations": [
+        {
+          "seed": 370994153,
+          "commentary": "Hector Bellerin (<TEAM>) fouls an opponent. at least that's what referee <REFEREE> signals."
+        },
+        {
+          "seed": 1146228529,
+          "commentary": "Hector Bellerin (<TEAM>) makes an overly - aggressive challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 14:48",
+      "t_seconds": 888,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Juan Manuel Mata",
+        "<PLAYER_2>": "David Ospina"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 14 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home <P> <PLAYER_2> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) stands over the free kick and opts to take it himself, sending it towards the top of net only for <PLAYER_2> to dive and make a save.",
+      "commentary": "Juan Manuel Mata (<TEAM>) stands over the free kick and opts to take it himself, sending it towards the top of net only for David Ospina to dive and make a save.",
+      "reference": "Juan Manuel Mata (<TEAM>) attempts to beat the goalkeeper with an accurate shot from the free kick, which is placed dangerously close to the penalty area. However, David Ospina pulls off a great save to deny his drilled attempt towards the middle of the goal.",
+      "variations": [
+        {
+          "seed": 604372452,
+          "commentary": "Juan Manuel Mata (<TEAM>) sends the free kick into the box, but David Ospina leaps to intercept it."
+        },
+        {
+          "seed": 1986277124,
+          "commentary": "Juan Manuel Mata (<TEAM>) swings in a promising cross from the free kick, but David Ospina comfortably clears the danger."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 16:45",
+      "t_seconds": 1005,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {},
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 16 <IMP> 0 <HOME> manchester united <AWAY> arsenal",
+      "commentary_tagged": "the <TEAM> players are exchanging some short passes to try and open up the opposition ’ s defence and hit them swiftly on the break.",
+      "commentary": "the <TEAM> players are exchanging some short passes to try and open up the opposition ’ s defence and hit them swiftly on the break.",
+      "reference": "The <TEAM> players are exchanging some short passes to try and open up the opposition’s defence and hit them swiftly on the break.",
+      "variations": [
+        {
+          "seed": 1782676687,
+          "commentary": "<TEAM> are bossing possession at the moment by exchanging some precise passes from player to player."
+        },
+        {
+          "seed": 1530141899,
+          "commentary": "the <TEAM> players are exchanging some short passes to try and open up the opposition ’ s defence and hit them swiftly on the break."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 17:19",
+      "t_seconds": 1039,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Chris Smalling"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 17 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Chris Smalling (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "The referee blows his whistle as Chris Smalling (<TEAM>) was too aggressive in his challenge.",
+      "variations": [
+        {
+          "seed": 2047023518,
+          "commentary": "Chris Smalling (<TEAM>) was too forceful with his tackle and <REFEREE> interrupted the game to signal a free kick."
+        },
+        {
+          "seed": 228087670,
+          "commentary": "Chris Smalling (<TEAM>) escapes without any punishment from the referee after using excessive force to foul his opponent. <TEAM> are awarded a free kick from a dangerous position."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 18:18",
+      "t_seconds": 1098,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Aaron Ramsey"
+      },
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 18 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "commentary": "Aaron Ramsey (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "reference": "One of the defenders reacts at the last minute to brilliantly block a pass from Aaron Ramsey (<TEAM>).",
+      "variations": [
+        {
+          "seed": 2035033432,
+          "commentary": "Aaron Ramsey (<TEAM>) fails to find any of his teammates inside the box as his pass is blocked. <TEAM> have been awarded a corner kick."
+        },
+        {
+          "seed": 1685555444,
+          "commentary": "Aaron Ramsey (<TEAM>) tries to create a chance, but puts too much weight on his pass."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 20:22",
+      "t_seconds": 1222,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Marouane Fellaini"
+      },
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "commentary": "Marouane Fellaini (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "reference": "Marouane Fellaini (<TEAM>) sends a long ball across the pitch, but it misses its target.",
+      "variations": [
+        {
+          "seed": 1427426350,
+          "commentary": "a fine lofted pass into the box, sent by Marouane Fellaini (<TEAM>), is intercepted by the opposition's defence. the ball goes out of play. <TEAM> are awarded a corner kick."
+        },
+        {
+          "seed": 445078615,
+          "commentary": "Marouane Fellaini (<TEAM>) fails to find a teammate across the pitch with a long ball. the ball is off of the pitch and it's a goal kick for <TEAM>."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 23:51",
+      "t_seconds": 1431,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 23 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "commentary": "Ashley Young (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "reference": "Ashley Young (<TEAM>) fails to find a teammate across the pitch with a long ball.",
+      "variations": [
+        {
+          "seed": 1735889661,
+          "commentary": "a pass into the penalty area from Ashley Young (<TEAM>) is intercepted by the defence. the ball goes behind for a corner. <TEAM> will have an opportunity to threaten the opposition's goal."
+        },
+        {
+          "seed": 1486439320,
+          "commentary": "Ashley Young (<TEAM>) delivers a long ball, but it lacks enough power to reach his teammates and is intercepted by one of the defenders."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 24:58",
+      "t_seconds": 1498,
+      "event": "offside",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Radamel Falcao"
+      },
+      "structured_input": "<EVT> offside <HALF> 1 <MIN> 24 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "commentary": "Radamel Falcao (<TEAM>) is caught offside!",
+      "reference": "Radamel Falcao (<TEAM>) fails to beat the offside trap and the linesman puts his flag up.",
+      "variations": [
+        {
+          "seed": 1307386614,
+          "commentary": "Radamel Falcao (<TEAM>) fails to beat the offside trap and the linesman puts his flag up."
+        },
+        {
+          "seed": 1622458780,
+          "commentary": "the linesman raises his flag for offside before Radamel Falcao (<TEAM>) heads on."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 25:57",
+      "t_seconds": 1557,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Marouane Fellaini"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 25 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Marouane Fellaini (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Marouane Fellaini (<TEAM>) should know this behaviour is beyond the rules. He was too careless with his challenge and left <REFEREE> no option but to blow his whistle.",
+      "variations": [
+        {
+          "seed": 1727183701,
+          "commentary": "Marouane Fellaini (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul."
+        },
+        {
+          "seed": 264223992,
+          "commentary": "Marouane Fellaini (<TEAM>) should know this behaviour is beyond the rules. he was too careless with his challenge and left <REFEREE> no option but to blow his whistle. <TEAM> are awarded a free kick from a dangerous position."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 26:43",
+      "t_seconds": 1603,
+      "event": "clearance",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Laurent Koscielny"
+      },
+      "structured_input": "<EVT> clearance <HALF> 1 <MIN> 26 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) tries to send the ball in front of the goal, but the opposition's defence averts the threat. the ball goes out of play. <TEAM> are awarded a corner kick.",
+      "commentary": "Laurent Koscielny (<TEAM>) tries to send the ball in front of the goal, but the opposition's defence averts the threat. the ball goes out of play. <TEAM> are awarded a corner kick.",
+      "reference": "Laurent Koscielny (<TEAM>) sends a pass into the box, but the opposition's defence is alert to the danger and makes a clearance.",
+      "variations": [
+        {
+          "seed": 1021451912,
+          "commentary": "another attempt to send the ball beyond the defence by Laurent Koscielny (<TEAM>) is thwarted and cleared to safety."
+        },
+        {
+          "seed": 1206908633,
+          "commentary": "good clearance! Laurent Koscielny (<TEAM>) receives a brilliant short pass and finds himself in a good position inside the box, but he's robbed of the ball by one of the defending players. <TEAM> have been awarded a corner kick."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 28:46",
+      "t_seconds": 1726,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Francis Coquelin"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 28 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Francis Coquelin (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Francis Coquelin (<TEAM>) carelessly slides into the feet of his opponent and he'll be lucky to avoid punishment. <REFEREE> blows for the foul but keeps his cards in his pocket on this occasion.",
+      "variations": [
+        {
+          "seed": 2058115079,
+          "commentary": "<REFEREE> blows his whistle after Francis Coquelin (<TEAM>) brings one of his opponents down with a strong tackle. <TEAM> earn a free kick which could lead to a goal - scoring opportunity."
+        },
+        {
+          "seed": 532356087,
+          "commentary": "<REFEREE> blows his whistle after Francis Coquelin (<TEAM>) kicks an opponent's legs instead of the ball."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 29:51",
+      "t_seconds": 1791,
+      "event": "soccer-ball",
+      "from_v1_label": null,
+      "players": {
+        "<PLAYER_1>": "Ander Herrera",
+        "<PLAYER_2>": "Ashley Young"
+      },
+      "structured_input": "<EVT> soccer-ball <HALF> 1 <MIN> 29 <IMP> 1 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home <P> <PLAYER_2> home",
+      "commentary_tagged": "goal! <PLAYER_1> displays great vision and sends a pass to <PLAYER_2> (<TEAM>), who shows brilliant composure inside the box to bury the ball from close range in the back of the net. the score is 1: 0.",
+      "commentary": "goal! Ander Herrera displays great vision and sends a pass to Ashley Young (<TEAM>), who shows brilliant composure inside the box to bury the ball from close range in the back of the net. the score is 1: 0.",
+      "reference": "It's a goal! Ander Herrera (<TEAM>) scores with a brilliant shot into the bottom right corner after being released inside the box by a superb lofted pass from Ashley Young. The score is now 1:0.",
+      "variations": [
+        {
+          "seed": 164269990,
+          "commentary": "Ander Herrera passes to Ashley Young (<TEAM>), who collects the ball and unleashes a terrific shot from the edge of the box. his effort goes into the bottom right corner. fabulous goal! the score is 0: 2."
+        },
+        {
+          "seed": 1643456768,
+          "commentary": "Ander Herrera (<TEAM>) scores from a rebound after the ball rebounded to Ashley Young and he latches on to a pass and fires a low shot from inside the left post. the score is 1: 2."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 31:11",
+      "t_seconds": 1871,
+      "event": "cross",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Antonio Valencia"
+      },
+      "structured_input": "<EVT> cross <HALF> 1 <MIN> 31 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "commentary": "Antonio Valencia (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "reference": "An attempted cross from Antonio Valencia (<TEAM>) is cleared.",
+      "variations": [
+        {
+          "seed": 914957663,
+          "commentary": "Antonio Valencia (<TEAM>) is disappointed with himself because he got into a good area but produced a poor cross."
+        },
+        {
+          "seed": 1397392172,
+          "commentary": "Antonio Valencia (<TEAM>) attempts to find the head of one of his teammates with a promising cross into the box, but a defender outjumps the attackers and averts the threat."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 32:07",
+      "t_seconds": 1927,
+      "event": "shot",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "structured_input": "<EVT> shot <HALF> 1 <MIN> 32 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "commentary": "Ashley Young (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "reference": "A pass by Ashley Young (<TEAM>) ends up in no man's land, and the attacking effort comes to an end.",
+      "variations": [
+        {
+          "seed": 720766530,
+          "commentary": "Ashley Young (<TEAM>) receives a fine low pass and attempts to send the ball past the goalkeeper, but his shot goes wide of the goal."
+        },
+        {
+          "seed": 773007273,
+          "commentary": "Ashley Young (<TEAM>) takes a mid - range shot, but the ball sails high over the bar."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 32:28",
+      "t_seconds": 1948,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 32 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "commentary": "Mesut Ozil (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "reference": "Mesut Ozil (<TEAM>) sends in a pass which fails to reach any of his teammates.",
+      "variations": [
+        {
+          "seed": 132540106,
+          "commentary": "Mesut Ozil (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the referee and his assistant both point at the corner flag. <TEAM> will have an opportunity to threaten the opposition's goal."
+        },
+        {
+          "seed": 1246444433,
+          "commentary": "Mesut Ozil (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the referee points to the corner flag and <TEAM> will take a corner."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 34:03",
+      "t_seconds": 2043,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Francis Coquelin"
+      },
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 34 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "commentary": "Francis Coquelin (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "reference": "A crossfield pass from Francis Coquelin (<TEAM>) fails to find any of his teammates.",
+      "variations": [
+        {
+          "seed": 148650341,
+          "commentary": "Francis Coquelin (<TEAM>) delivers a long ball, but it lacks enough power to reach his teammates and is intercepted by one of the defenders. the referee and his assistant both point at the corner flag. <TEAM> will have an opportunity to threaten the opposition's goal."
+        },
+        {
+          "seed": 1572699684,
+          "commentary": "Francis Coquelin (<TEAM>) fails to find a teammate across the pitch with a long ball. the ball is off of the pitch and it's a goal kick for <TEAM>."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 34:41",
+      "t_seconds": 2081,
+      "event": "shot",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Ander Herrera"
+      },
+      "structured_input": "<EVT> shot <HALF> 1 <MIN> 34 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "commentary": "Ander Herrera (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "reference": "Ander Herrera (<TEAM>) receives a pass and unleashes a shot which goes well wide of the right post.",
+      "variations": [
+        {
+          "seed": 503191710,
+          "commentary": "Ander Herrera (<TEAM>) leaps highest to meet the resulting corner and attempts to head home, but the effort goes harmlessly wide of the left post."
+        },
+        {
+          "seed": 114350156,
+          "commentary": "Ander Herrera (<TEAM>) reacts well to get to the rebound and takes a shot from the edge of the box, but he fails to get the ball through the players standing between him and the goal."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 35:43",
+      "t_seconds": 2143,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Alexis Sanchez"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 35 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Alexis Sanchez (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Alexis Sanchez (<TEAM>) jumps into a tackle and <REFEREE> blows his whistle for a foul.",
+      "variations": [
+        {
+          "seed": 2076316650,
+          "commentary": "Alexis Sanchez (<TEAM>) was too fierce in his attempt to get the ball from his opponent and <REFEREE> blows for a foul. <TEAM> have a free kick."
+        },
+        {
+          "seed": 1604117174,
+          "commentary": "Alexis Sanchez (<TEAM>) robs an opponent of the ball and explodes in anger when <REFEREE> blows for a foul."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 37:22",
+      "t_seconds": 2242,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Per Mertesacker"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 37 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Per Mertesacker (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Per Mertesacker (<TEAM>) gives away a foul for a fierce tackle on an opponent.",
+      "variations": [
+        {
+          "seed": 1091991146,
+          "commentary": "Per Mertesacker (<TEAM>) manages to dispossess his opponent of the ball, but he commits a foul in the process and the referee blows his whistle. <TEAM> are awarded a free kick."
+        },
+        {
+          "seed": 278277649,
+          "commentary": "Per Mertesacker (<TEAM>) is penalised for holding. <REFEREE> signals a set piece. <TEAM> are awarded a free kick. let's see what they create from this."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 37:47",
+      "t_seconds": 2267,
+      "event": "cross",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Antonio Valencia"
+      },
+      "structured_input": "<EVT> cross <HALF> 1 <MIN> 37 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "commentary": "Antonio Valencia (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "reference": "Antonio Valencia (<TEAM>) sends a beautiful cross into the penalty area, but the opposition's defence manages to clear the ball to safety.",
+      "variations": [
+        {
+          "seed": 1461323451,
+          "commentary": "Antonio Valencia (<TEAM>) sends a cross into the box, but the opposition's defence clears the ball to safety."
+        },
+        {
+          "seed": 2135832074,
+          "commentary": "Antonio Valencia (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. <TEAM> force a corner. they send men into the box."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 37:50",
+      "t_seconds": 2270,
+      "event": "offside",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Radamel Falcao"
+      },
+      "structured_input": "<EVT> offside <HALF> 1 <MIN> 37 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "commentary": "Radamel Falcao (<TEAM>) is caught offside!",
+      "reference": "The linesman raises his flag. Radamel Falcao (<TEAM>) is adjudged offside.",
+      "variations": [
+        {
+          "seed": 35793398,
+          "commentary": "the linesman raises his flag for offside before Radamel Falcao (<TEAM>) heads on."
+        },
+        {
+          "seed": 1849584197,
+          "commentary": "Radamel Falcao (<TEAM>) is offside and the linesman raises his flag."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 38:32",
+      "t_seconds": 2312,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Radamel Falcao"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 38 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Radamel Falcao (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "<REFEREE> blows his whistle and it's Radamel Falcao (<TEAM>) who is penalised for an offensive foul. Good decision by the referee.",
+      "variations": [
+        {
+          "seed": 1207051613,
+          "commentary": "Radamel Falcao (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul."
+        },
+        {
+          "seed": 1459194517,
+          "commentary": "Radamel Falcao (<TEAM>) gives away a foul for a fierce tackle on an opponent. <TEAM> are awarded a free kick from a dangerous position."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 39:35",
+      "t_seconds": 2375,
+      "event": "offside",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Hector Bellerin"
+      },
+      "structured_input": "<EVT> offside <HALF> 1 <MIN> 39 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) is offside and the linesman raises his flag.",
+      "commentary": "Hector Bellerin (<TEAM>) is offside and the linesman raises his flag.",
+      "reference": "Flag goes up against Hector Bellerin (<TEAM>) and the referee blows his whistle for offside.",
+      "variations": [
+        {
+          "seed": 1935207830,
+          "commentary": "Hector Bellerin (<TEAM>) is offside and the linesman raises his flag."
+        },
+        {
+          "seed": 311414531,
+          "commentary": "Hector Bellerin (<TEAM>) fails to beat the offside trap and the linesman puts his flag up."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 41:18",
+      "t_seconds": 2478,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Phil Jones"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 41 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Phil Jones (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Phil Jones (<TEAM>) commits a minor foul to interrupt the attacking move of his opponent and is warned by the referee that he will get a yellow card if he does it again. <TEAM> earn a free kick.",
+      "variations": [
+        {
+          "seed": 51494776,
+          "commentary": "Phil Jones (<TEAM>) gives away a foul for a clumsy challenge. referee <REFEREE> saw the whole situation."
+        },
+        {
+          "seed": 2127313090,
+          "commentary": "Phil Jones (<TEAM>) unleashes a shot from a mid - range free kick that crashes into the defensive wall. the opposition's goalkeeper set it up perfectly."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 41:55",
+      "t_seconds": 2515,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 41 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Mesut Ozil (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Mesut Ozil (<TEAM>) delivers a poor cross from a free kick as one of the defenders comfortably clears it away.",
+      "variations": [
+        {
+          "seed": 402116864,
+          "commentary": "Mesut Ozil (<TEAM>) sends in a lofted cross from a mid - range free kick, but his poor effort goes out of play."
+        },
+        {
+          "seed": 347214236,
+          "commentary": "Mesut Ozil (<TEAM>) gives away a foul during an attacking move and the referee blows his whistle."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 42:28",
+      "t_seconds": 2548,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Ander Herrera"
+      },
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 42 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "commentary": "Ander Herrera (<TEAM>) attempts to find his teammate with a pass from outside the box, but the opposition's defence is quick to react and thwarts the attack. the ball is out of play. <TEAM> win a corner kick.",
+      "reference": "Ander Herrera (<TEAM>) is unable to feed a through ball into the path of his teammates.",
+      "variations": [
+        {
+          "seed": 938576317,
+          "commentary": "Ander Herrera (<TEAM>) wastes a good opportunity as his pass into the box is blocked by the defence. <TEAM> force a corner. their opponents will face another attacking threat."
+        },
+        {
+          "seed": 1523732370,
+          "commentary": "Ander Herrera (<TEAM>) fails to find a teammate across the pitch with a long ball. the ball is off of the pitch and it's a goal kick for <TEAM>."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 44:27",
+      "t_seconds": 2667,
+      "event": "foul",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Francis Coquelin"
+      },
+      "structured_input": "<EVT> foul <HALF> 1 <MIN> 44 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> away",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "commentary": "Francis Coquelin (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "reference": "Francis Coquelin (<TEAM>) gives away a foul for a clumsy challenge. Referee <REFEREE> saw the whole situation. <TEAM> are awarded a free kick. Let's see what they create from this.",
+      "variations": [
+        {
+          "seed": 926026193,
+          "commentary": "Francis Coquelin (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position."
+        },
+        {
+          "seed": 707949942,
+          "commentary": "Francis Coquelin (<TEAM>) puts a cross into the box from the free kick, but the defender gets there first."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 45:18",
+      "t_seconds": 2718,
+      "event": "shot",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Daley Blind"
+      },
+      "structured_input": "<EVT> shot <HALF> 1 <MIN> 45 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "commentary": "Daley Blind (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "reference": "Daley Blind (<TEAM>) gets in a good position to shoot just outside the box after a nice pass, but his effort is unintentionally blocked by one of his teammate.",
+      "variations": [
+        {
+          "seed": 1725916915,
+          "commentary": "Daley Blind (<TEAM>) collects a pass inside the box and unleashes a shot which is brilliantly blocked by a defender. <TEAM> have been awarded a corner kick. the referee and one of his assistants both point at the corner flag."
+        },
+        {
+          "seed": 152711850,
+          "commentary": "Daley Blind (<TEAM>) attempts to find one of his teammates with a sweet pass into the box, but one of the defending players reacts well and intercepts the effort. <TEAM> earn a corner."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 45:40",
+      "t_seconds": 2740,
+      "event": "shot",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Daley Blind"
+      },
+      "structured_input": "<EVT> shot <HALF> 1 <MIN> 45 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "commentary": "Daley Blind (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "reference": "Daley Blind (<TEAM>) sees his long-range effort blocked. The referee and his assistant both point at the corner flag. <TEAM> will have an opportunity to threaten the opposition's goal.",
+      "variations": [
+        {
+          "seed": 973899072,
+          "commentary": "Daley Blind (<TEAM>) jumps for a header from the resulting set piece, but it goes way wide of the left post."
+        },
+        {
+          "seed": 68576873,
+          "commentary": "Daley Blind (<TEAM>) receives a pass and tries his luck with a long - range powerful effort. his poorly placed shot lacks accuracy and flies way over the crossbar."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 45:51",
+      "t_seconds": 2751,
+      "event": "corner",
+      "from_v1_label": null,
+      "players": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "structured_input": "<EVT> corner <HALF> 1 <MIN> 45 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) takes the corner but fails to find any of his teammates as he overhits the effort.",
+      "commentary": "Ashley Young (<TEAM>) takes the corner but fails to find any of his teammates as he overhits the effort.",
+      "reference": "Ashley Young (<TEAM>) takes the corner with a short pass.",
+      "variations": [
+        {
+          "seed": 1609126260,
+          "commentary": "Ashley Young (<TEAM>) launches a powerful cross from the corner into the box, but the ball is intercepted by the defender."
+        },
+        {
+          "seed": 1693082431,
+          "commentary": "Ashley Young (<TEAM>) swings in a dangerous cross from the resulting corner kick, but none of his teammates manage to outjump the defence."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 46:03",
+      "t_seconds": 2763,
+      "event": "cross",
+      "from_v1_label": "<no_event>",
+      "players": {
+        "<PLAYER_1>": "Juan Manuel Mata"
+      },
+      "structured_input": "<EVT> cross <HALF> 1 <MIN> 46 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "commentary_tagged": "<PLAYER_1> (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "commentary": "Juan Manuel Mata (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "reference": "Juan Manuel Mata (<TEAM>) attempts to find the head of one of his teammates with a promising cross into the box, but a defender outjumps the attackers and averts the threat.",
+      "variations": [
+        {
+          "seed": 1104078918,
+          "commentary": "Juan Manuel Mata (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> will have a goal kick."
+        },
+        {
+          "seed": 850286347,
+          "commentary": "Juan Manuel Mata (<TEAM>) flights in the cross, but the defender is alert and clears to safety. <TEAM> have been awarded a corner kick. the referee and one of his assistants both point at the corner flag."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 46:24",
+      "t_seconds": 2784,
+      "event": "whistle",
+      "from_v1_label": null,
+      "players": {},
+      "structured_input": "<EVT> whistle <HALF> 1 <MIN> 46 <IMP> 1 <HOME> manchester united <AWAY> arsenal",
+      "commentary_tagged": "the referee blows his whistle to end the first half and the players are now heading to their respective dressing rooms.",
+      "commentary": "the referee blows his whistle to end the first half and the players are now heading to their respective dressing rooms.",
+      "reference": "The referee blows his whistle to end the first half and the players are now heading to their respective dressing rooms.",
+      "variations": [
+        {
+          "seed": 1885304116,
+          "commentary": "the referee blows his whistle for half - time, bringing to a close the first 45 minutes of the match."
+        },
+        {
+          "seed": 920772043,
+          "commentary": "<REFEREE> has ended the first half by blowing the whistle."
+        }
+      ]
+    },
+    {
+      "game_time": "1 - 46:59",
+      "t_seconds": 2819,
+      "event": "pass",
+      "from_v1_label": "<no_event>",
+      "players": {},
+      "structured_input": "<EVT> pass <HALF> 1 <MIN> 46 <IMP> 0 <HOME> manchester united <AWAY> arsenal",
+      "commentary_tagged": "the fans in the stadium certainly won't regret buying tickets as they witnessed a great game today. the home side dominated today's game. the home team made a lot of passes and attempted to maintain possession, while the away side made defence their highest priority.",
+      "commentary": "the fans in the stadium certainly won't regret buying tickets as they witnessed a great game today. the home side dominated today's game. the home team made a lot of passes and attempted to maintain possession, while the away side made defence their highest priority.",
+      "reference": "Today's clash hasn't been that attractive up to now, but it hasn't been a total borefest. There have been a few nice movements for both sides. <TEAM> dominated the opening period and easily created the most chances. The home players have grown in confidence and started to string some passes together. The visiting side have relied on their defence and counter-attacks.",
+      "variations": [
+        {
+          "seed": 945935742,
+          "commentary": "the fans in the stadium certainly won't regret buying tickets as they witnessed a great game today. the home side dominated today's game. the home side are keeping possession of the ball with some short passes, while the visitors are waiting to open up their defence and hit them swiftly on the break."
+        },
+        {
+          "seed": 1956582100,
+          "commentary": "we have been watching a lacklustre game with only a few moments to excite the crowd. the players surely have better abilities, they just needed to motivate themselves a little more. neither side has really focused on a well - organized defence."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "clip": "28:30-31:30",
+  "half": 1,
+  "teams": {
+    "home": "Manchester United",
+    "away": "Arsenal"
+  },
+  "source": "Spivak action spotting over SoccerNet ResNET features (cached confidence timeline)",
+  "detector_threshold": 0.3,
+  "generator": "project Transformer, greedy decoding, grounding mask active",
+  "player_identity": "not recoverable from video - all events have zero player slots",
+  "n_events": 1,
+  "events": [
+    {
+      "event_id": "E02",
+      "t_seconds": 1760.5,
+      "game_time": "1 - 29:20",
+      "half": 1,
+      "minute": 29,
+      "spivak_class": "Goal",
+      "detector_confidence": 0.902,
+      "event": "soccer-ball",
+      "important": true,
+      "home": "Manchester United",
+      "away": "Arsenal",
+      "players": [],
+      "text_quality": "clean"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "video": "data/caption-2024/england_epl/2014-2015/2015-05-17 - 18-00 Manchester United 1 - 1 Arsenal/1_224p.mkv",
+  "clip": "28:30-31:30",
+  "frame": 42825,
+  "timestamp_seconds": 1713,
+  "timestamp": "28:33 (first half)",
+  "frame_width": 398,
+  "frame_height": 224,
+  "coordinate_space": "native frame pixels (398x224) - NOT the upscaled image",
+  "annotated_image_scale": 3,
+  "detector": "YOLOv8n, COCO class 0 (person), conf>=0.30",
+  "detector_note": "person locations only - no identity, team or role",
+  "num_detections": 4,
+  "players": {
+    "PLAYER_1": {
+      "bbox": [
+        18.1,
+        144.9,
+        85.6,
+        223.3
+      ],
+      "confidence": 0.904
+    },
+    "PLAYER_2": {
+      "bbox": [
+        66.0,
+        11.0,
+        176.2,
+        209.9
+      ],
+      "confidence": 0.928
+    },
+    "PLAYER_3": {
+      "bbox": [
+        178.7,
+        0.5,
+        243.8,
+        174.1
+      ],
+      "confidence": 0.902
+    },
+    "PLAYER_4": {
+      "bbox": [
+        235.7,
+        46.3,
+        319.0,
+        223.1
+      ],
+      "confidence": 0.913
+    }
+  }
+}

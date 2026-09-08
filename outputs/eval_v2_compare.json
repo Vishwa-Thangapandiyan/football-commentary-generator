@@ -1,0 +1,126 @@
+{
+  "v2": {
+    "model": "V2",
+    "checkpoint": "checkpoints/v2_best.pt",
+    "epoch": 10,
+    "val_loss": 0.3732,
+    "n_examples": 7826,
+    "bleu4": 21.43,
+    "precisions": [
+      46.2,
+      24.4,
+      16.6,
+      11.3
+    ],
+    "ungrounded_constrained_pct": 0.0,
+    "ungrounded_unconstrained_pct": 0.026,
+    "raw_entity_tags_leaked": 0
+  },
+  "v1": {
+    "model": "V1",
+    "checkpoint": "checkpoints/full_best.pt",
+    "epoch": 10,
+    "val_loss": 0.4097,
+    "n_examples": 7826,
+    "bleu4": 13.25,
+    "precisions": [
+      50.9,
+      27.4,
+      18.3,
+      11.4
+    ],
+    "ungrounded_constrained_pct": 0.0,
+    "ungrounded_unconstrained_pct": 0.115,
+    "raw_entity_tags_leaked": 0
+  },
+  "probes": [
+    {
+      "probe": "pass  (2 players)",
+      "label": "pass",
+      "n_players": 2,
+      "input": "<EVT> pass <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home <P> <PLAYER_2> home",
+      "greedy": "Ander Herrera (<TEAM>) plays a one - two with Ashley Young, but the move breaks down.",
+      "variations": [
+        "half - chance! Ander Herrera (<TEAM>) plays a pass into the box, but Ashley Young reacts well to snuff out the attack.",
+        "a pass from Ander Herrera (<TEAM>) is intercepted by Ashley Young and the move breaks down."
+      ]
+    },
+    {
+      "probe": "cross (1 player)",
+      "label": "cross",
+      "n_players": 1,
+      "input": "<EVT> cross <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "greedy": "Ander Herrera (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball goes out of play and <TEAM> have been awarded a corner kick.",
+      "variations": [
+        "Ander Herrera (<TEAM>) whips a promising cross into the box, but the opposition's defence intercepts the ball. <TEAM> have been awarded a corner kick. the referee and one of his assistants both point at the corner flag.",
+        "Ander Herrera (<TEAM>) sends a lofted cross into the penalty area. unfortunately for him, the opponent's defence deals with his cross comfortably and intercepts it. the ball has crossed the sideline. <TEAM> are taking a throw - in."
+      ]
+    },
+    {
+      "probe": "shot  (1 player)",
+      "label": "shot",
+      "n_players": 1,
+      "input": "<EVT> shot <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "greedy": "Ander Herrera (<TEAM>) receives a well - played pass inside the penalty area and shoots. his effort sails well wide of the left post.",
+      "variations": [
+        "Ander Herrera (<TEAM>) receives a quality pass and releases a rocket of a shot from distance, but his amazing effort goes just wide of the left post. the ball is off of the pitch and it's a goal kick for <TEAM>.",
+        "Ander Herrera (<TEAM>) misses a good chance to score. a perfect cross into the box finds Ander Herrera (<TEAM>) who rises for a header, but he sends the ball well over the bar."
+      ]
+    },
+    {
+      "probe": "save  (shooter+keeper)",
+      "label": "save",
+      "n_players": 2,
+      "input": "<EVT> save <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home <P> <PLAYER_2> home",
+      "greedy": "Ander Herrera (<TEAM>) receives a low pass just outside the box and unleashes a fine strike towards the middle of the goal. Ashley Young pulls off a reflexive save to block his effort. nice goalkeeping skill, indeed.",
+      "variations": [
+        "Ander Herrera (<TEAM>) sends a long ball in, but Ashley Young comfortably gathers the ball.",
+        "Ander Herrera (<TEAM>) collects a pass and has an effort from distance to the bottom right corner, but Ashley Young answers with a superb save to deny him."
+      ]
+    },
+    {
+      "probe": "dribble (1 player)",
+      "label": "dribble",
+      "n_players": 1,
+      "input": "<EVT> dribble <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "greedy": "Ander Herrera (<TEAM>) goes on a solo run, but he fails to create a chance as an opposition player blocks him. the ball is out of play. <TEAM> will have a chance to score from a corner.",
+      "variations": [
+        "Ander Herrera (<TEAM>) slaloms his way past challenges, but an opposing player does well to get the ball away. the ball is out of play and <TEAM> manage to earn a corner.",
+        "Ander Herrera (<TEAM>) slaloms his way past challenges, but an opposing player does well to get the ball away. <TEAM> force a corner. their opponents will face another attacking threat."
+      ]
+    },
+    {
+      "probe": "foul  (1 player)",
+      "label": "foul",
+      "n_players": 1,
+      "input": "<EVT> foul <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "greedy": "Ander Herrera (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for a foul. <TEAM> are awarded a free kick from a dangerous position.",
+      "variations": [
+        "Ander Herrera (<TEAM>) was too forceful with his tackle and <REFEREE> interrupted the game to signal a free kick.",
+        "Ander Herrera (<TEAM>) tackles a bit over - zealously and <REFEREE> blows for a foul. <TEAM> are awarded a free kick. let's see what they create from this."
+      ]
+    },
+    {
+      "probe": "offside (1 player)",
+      "label": "offside",
+      "n_players": 1,
+      "input": "<EVT> offside <HALF> 1 <MIN> 20 <IMP> 0 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home",
+      "greedy": "Ander Herrera (<TEAM>) is caught offside!",
+      "variations": [
+        "the linesman raises his flag for offside before Ander Herrera (<TEAM>) heads on.",
+        "Ander Herrera (<TEAM>) is caught offside!"
+      ]
+    },
+    {
+      "probe": "soccer-ball (2 players)",
+      "label": "soccer-ball",
+      "n_players": 2,
+      "input": "<EVT> soccer-ball <HALF> 1 <MIN> 20 <IMP> 1 <HOME> manchester united <AWAY> arsenal <P> <PLAYER_1> home <P> <PLAYER_2> home",
+      "greedy": "goal! Ander Herrera displays great vision and sends a pass to Ashley Young (<TEAM>), who shows brilliant composure inside the box to bury the ball from close range in the back of the net. the score is 1: 0.",
+      "variations": [
+        "goal! Ander Herrera slips it to Ashley Young (<TEAM>) on the edge of the box and he finds the bottom left corner with a great effort. the score is 1: 3.",
+        "goal! Ander Herrera (<TEAM>) shows good awareness inside the box as he latches on to a brilliant pass from Ashley Young. he latches on to it and strikes the ball from inside the left post. 1: 2."
+      ]
+    }
+  ]
+}
