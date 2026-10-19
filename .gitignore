@@ -40,3 +40,15 @@ Thumbs.db
 
 # Logs
 outputs/*.log
+
+# ---------------------------------------------------------------------------
+# Still frames from the NDA broadcast video - same rule as the video itself.
+# ---------------------------------------------------------------------------
+*.jpg
+*.jpeg
+*.png
+
+# Local working notes, kept out of the public repo
+CLAUDE.md
+RUNBOOK.md
+EXPLAINER.md

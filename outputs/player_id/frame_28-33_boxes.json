@@ -13,6 +13,7 @@
   "num_detections": 4,
   "players": {
     "PLAYER_1": {
+      "name": "referee",
       "bbox": [
         18.1,
         144.9,
@@ -22,6 +23,7 @@
       "confidence": 0.904
     },
     "PLAYER_2": {
+      "name": "Fellaini",
       "bbox": [
         66.0,
         11.0,
@@ -31,6 +33,7 @@
       "confidence": 0.928
     },
     "PLAYER_3": {
+      "name":"Young",
       "bbox": [
         178.7,
         0.5,
@@ -40,6 +43,7 @@
       "confidence": 0.902
     },
     "PLAYER_4": {
+      "name":"Aubameyang",
       "bbox": [
         235.7,
         46.3,

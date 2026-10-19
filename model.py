@@ -140,17 +140,7 @@ class CommentaryTransformer(nn.Module):
 
     @torch.no_grad()
     def greedy_decode(self, src, max_len=120, banned=None):
-        """Greedy autoregressive decoding (CLAUDE.md 4.9). No top-k/top-p/beam.
-
-        <BOS> -> predict -> append -> predict -> ... -> <EOS>
-        The decoder only ever attends to tokens it has already produced.
-
-        `banned`: optional (B, vocab) bool mask, True = forbidden for that row.
-        Used for GROUNDED CONSTRAINED DECODING (CLAUDE.md 4.14): entity tags the
-        input never established are driven to -inf BEFORE the argmax, so an
-        ungrounded placeholder is unreachable by construction rather than
-        filtered out afterwards.
-        """
+        
         self.eval()
         src_pad_mask = src.eq(PAD_ID)
         memory = self.encode(src, src_pad_mask)
