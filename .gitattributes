@@ -1,0 +1,8 @@
+# Normalise every text file to LF; never touch binaries.
+* text=auto eol=lf
+*.pt binary
+*.npy binary
+*.mkv binary
+*.mp4 binary
+*.jpg binary
+*.png binary

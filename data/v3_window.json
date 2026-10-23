@@ -1,0 +1,7 @@
+{
+  "before": 45,
+  "after": 20,
+  "train_agreement": 0.8586,
+  "max_actions": 4,
+  "chosen_on": "train"
+}

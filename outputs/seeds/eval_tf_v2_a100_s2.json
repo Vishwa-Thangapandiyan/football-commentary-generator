@@ -1,0 +1,17 @@
+{
+  "model": "Transformer",
+  "checkpoint": "checkpoints/tf_v2_a100_s2_best.pt",
+  "epoch": 10,
+  "val_loss": 0.3722,
+  "n_examples": 7826,
+  "bleu4": 20.66,
+  "precisions": [
+    52.2,
+    27.5,
+    19.0,
+    13.1
+  ],
+  "ungrounded_constrained_pct": 0.0,
+  "ungrounded_unconstrained_pct": 0.026,
+  "raw_entity_tags_leaked": 0
+}

@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 CKPT = ROOT / "checkpoints"
 
-MAX_SRC, MAX_TGT = 32, 96          # covers 100% / 99.94% of the dev slice
+MAX_SRC, MAX_TGT = 48, 96          # V1/V2 inputs <= 28 tokens; V3 adds <= 13 action tokens
 MAX_EPOCHS = 10                    # CLAUDE.md 4.12
 MAX_EPOCH_SECONDS = 300            # CLAUDE.md 4.12
 
@@ -78,20 +78,30 @@ def load(data_path, vocab_path):
     return data, vocab
 
 
-def run_epoch(model, loader, crit, opt, device, train=True, clip=1.0):
+def run_epoch(model, loader, crit, opt, device, train=True, clip=1.0, amp="fp32",
+              scaler=None):
+    """amp: fp32 (original runs) or fp16 autocast with a GradScaler (Tesla T4)."""
     model.train() if train else model.eval()
     total_loss = total_tok = 0
     for src, tgt in loader:
         src, tgt = src.to(device), tgt.to(device)
         tgt_in, tgt_out = tgt[:, :-1], tgt[:, 1:]
-        with torch.set_grad_enabled(train):
+        with torch.set_grad_enabled(train), torch.autocast(
+                "cuda", dtype=torch.float16, enabled=amp == "fp16" and device == "cuda"):
             logits = model(src, tgt_in)
-            loss = crit(logits.reshape(-1, logits.size(-1)), tgt_out.reshape(-1))
+        loss = crit(logits.float().reshape(-1, logits.size(-1)), tgt_out.reshape(-1))
         if train:
             opt.zero_grad(set_to_none=True)
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), clip)
-            opt.step()
+            if scaler is not None:
+                scaler.scale(loss).backward()
+                scaler.unscale_(opt)
+                torch.nn.utils.clip_grad_norm_(model.parameters(), clip)
+                scaler.step(opt)
+                scaler.update()
+            else:
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), clip)
+                opt.step()
         n = int(tgt_out.ne(PAD_ID).sum())
         total_loss += loss.item() * n
         total_tok += n
@@ -170,8 +180,11 @@ def overfit(data_path, vocab_path, n=32, steps=300, lr=3e-4):
 # ------------------------------------------------------------------ stage 6 ---
 
 
-def train(data_path, vocab_path, batch_size=32, lr=3e-4, tag="full"):
+def train(data_path, vocab_path, batch_size=32, lr=3e-4, tag="full", seed=None,
+          amp="fp32"):
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    if seed is not None:
+        torch.manual_seed(seed)
     data, vocab = load(data_path, vocab_path)
     train_ex, val_ex = data["train"], data["valid"]
     if not val_ex:
@@ -192,6 +205,7 @@ def train(data_path, vocab_path, batch_size=32, lr=3e-4, tag="full"):
     model = CommentaryTransformer(len(vocab)).to(device)
     crit = nn.CrossEntropyLoss(ignore_index=PAD_ID)
     opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.01)
+    scaler = torch.amp.GradScaler("cuda") if amp == "fp16" else None
     CKPT.mkdir(exist_ok=True)
 
     print(f"device        : {device}")
@@ -205,13 +219,19 @@ def train(data_path, vocab_path, batch_size=32, lr=3e-4, tag="full"):
     stopped_reason = f"completed {MAX_EPOCHS} epochs"
     for epoch in range(1, MAX_EPOCHS + 1):
         t0 = time.time()
-        tr_loss = run_epoch(model, tr_loader, crit, opt, device, train=True)
+        tr_loss = run_epoch(model, tr_loader, crit, opt, device, train=True,
+                            amp=amp, scaler=scaler)
+        if not math.isfinite(tr_loss):
+            raise SystemExit(f"STOPPED: non-finite training loss ({tr_loss}) in "
+                             f"epoch {epoch}; numeric overflow, not continuing")
         elapsed = time.time() - t0
-        va_loss = run_epoch(model, va_loader, crit, opt, device, train=False)
+        va_loss = run_epoch(model, va_loader, crit, opt, device, train=False,
+                            amp=amp)
 
         path = CKPT / f"{tag}_epoch{epoch:02d}.pt"
         save_ckpt(path, model, vocab, epoch, tr_loss, va_loss,
-                  {"epoch_seconds": elapsed, "data": str(data_path)})
+                  {"epoch_seconds": elapsed, "data": str(data_path),
+                   "seed": seed, "amp": amp})
         if va_loss < best:
             best = va_loss
             save_ckpt(CKPT / f"{tag}_best.pt", model, vocab, epoch, tr_loss, va_loss,
@@ -255,12 +275,17 @@ def main():
     ap.add_argument("--batch-size", type=int, default=32)
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--tag", default="full")
+    ap.add_argument("--amp", choices=["fp32", "fp16"], default="fp32",
+                    help="fp16 autocast + GradScaler, for a Tesla T4")
+    ap.add_argument("--seed", type=int, default=None,
+                    help="fix the random seed (the original runs were unseeded)")
     args = ap.parse_args()
 
     if args.stage == "overfit":
         ok = overfit(args.data, args.vocab, n=args.n, steps=args.steps, lr=args.lr)
         sys.exit(0 if ok else 1)
-    train(args.data, args.vocab, batch_size=args.batch_size, lr=args.lr, tag=args.tag)
+    train(args.data, args.vocab, batch_size=args.batch_size, lr=args.lr, tag=args.tag,
+          seed=args.seed, amp=args.amp)
 
 
 if __name__ == "__main__":

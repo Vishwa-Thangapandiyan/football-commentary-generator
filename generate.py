@@ -49,7 +49,14 @@ def load_model(ckpt_path, device, vocab_path=None):
                 print("  WARNING: vocab.json itos differs from checkpoint; "
                       "target-vocabulary restriction NOT applied")
 
-    model = CommentaryTransformer(**ck["config"]).to(device)
+    # Two architectures share this loader: BDH checkpoints (train_bdh.py) carry
+    # arch="bdh"; everything else is the encoder-decoder Transformer. Both expose
+    # greedy_decode(src, max_len, banned) with the same tensor contract.
+    if ck.get("arch") == "bdh":
+        from bdh_model import BDHCommentary
+        model = BDHCommentary(**ck["config"]).to(device)
+    else:
+        model = CommentaryTransformer(**ck["config"]).to(device)
     model.load_state_dict(ck["model_state"])
     model.eval()
     return model, vocab, ck

@@ -1,21 +1,19 @@
-# Football Commentary Generator - core requirements
-# Verified against: Python 3.13.15, Windows 11, RTX 4060 (CUDA available)
+# Football Commentary Generator: Transformer vs BDH
+# Tested with Python 3.11 (Linux, RTX 4060) and on Colab (A100, T4).
 
-# --- Dataset access ---
-SoccerNet==0.1.62          # official caption-2024 downloader + getListGames
+# --- Dataset access (public labels; video needs the SoccerNet NDA) ---
+SoccerNet==0.1.62
 
-# --- Model / training (already installed with CUDA 12.8 wheels) ---
+# --- Models / training ---
 torch>=2.9.0
 numpy>=2.2.0
 tqdm>=4.67.0
+# BDH itself is the git submodule third_party/bdh (needs only torch).
 
-# --- Optional, stage 8 only (BLEU-4). Do not let this block the model. ---
-# sacrebleu>=2.4.0
+# --- Metrics (metrics.py): BLEU/METEOR/ROUGE-L/CIDEr. METEOR also needs Java. ---
+pycocoevalcap>=1.2
 
-# --- Optional, stage 9 only (render_demo.py: TTS -> video -> Whisper ASR).
-# This is DEMO ASSEMBLY with pretrained tools, NOT part of our Transformer.
-# Install only after the generation baseline works.
-# openai-whisper
-# pyttsx3
-# opencv-python        # already present: 4.12.0.88
-# imageio-ffmpeg
+# --- Optional: video demos only (NOT part of either commentary model) ---
+# tensorflow          # spivak action spotting
+# ultralytics         # YOLO person boxes
+# opencv-python

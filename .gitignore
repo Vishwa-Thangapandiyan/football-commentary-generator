@@ -21,6 +21,8 @@ models/spivak/
 # ---------------------------------------------------------------------------
 checkpoints/*
 !checkpoints/full_best.pt
+!checkpoints/transformer_v3_best.pt
+!checkpoints/bdh_v3_best.pt
 
 # Auto-downloaded on first use by ultralytics
 yolov8n.pt
@@ -52,3 +54,10 @@ outputs/*.log
 CLAUDE.md
 RUNBOOK.md
 EXPLAINER.md
+
+
+# Regenerable scratch: eval caches, per-job Colab logs/status, literature-survey output
+outputs/eval_cache_*.jsonl
+outputs/seeds/*.log
+outputs/seeds/colab_status_*.txt
+output/

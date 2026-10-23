@@ -1,0 +1,482 @@
+{
+  "summary": {
+    "model": "BDH",
+    "checkpoint": "checkpoints/bdh_v2_a100_s1_best.pt",
+    "epoch": 8,
+    "val_loss": 0.3851,
+    "params": 7405056,
+    "split": "test",
+    "n_examples": 7826,
+    "bleu4": 20.95,
+    "precisions": [
+      51.7,
+      28.3,
+      19.2,
+      13.1
+    ],
+    "ungrounded_constrained_pct": 0.0,
+    "ungrounded_unconstrained_pct": 0.089,
+    "raw_entity_tags_leaked": 0,
+    "decode_seconds": 301.8
+  },
+  "samples": [
+    {
+      "label": "other-play",
+      "grounding": {},
+      "reference_tagged": "We saw a few chances and nice plays, but the overall impression of the game is uninspiring and not hugely entertaining. A very even game was seen on the pitch today. Both sides tried to combine well and to keep the ball at their feet.",
+      "generated_tagged": "what a thrilling encounter, there was plenty of goal mouth action. there wasn't any significant dominance by either side in this game. the home team played possession football and the away players really focused on a well - organized defence.",
+      "generated_tagged_raw_debug": "what a thrilling encounter, there was plenty of goal mouth action. there wasn't any significant dominance by either side in this game. the home team played possession football and the away players really focused on a well - organized defence."
+    },
+    {
+      "label": "whistle",
+      "grounding": {},
+      "reference_tagged": "Nothing more will happen in this game as the referee blows for full time.",
+      "generated_tagged": "that's the end of the match.",
+      "generated_tagged_raw_debug": "that's the end of the match."
+    },
+    {
+      "label": "y-card",
+      "grounding": {
+        "<PLAYER_1>": "Ander Herrera"
+      },
+      "reference_tagged": "This yellow card was deserved. The tackle by <PLAYER_1> (<TEAM>) was quite harsh and <REFEREE> didn't hesitate to show him a yellow card.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) receives a yellow card.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) receives a yellow card."
+    },
+    {
+      "label": "cross",
+      "grounding": {
+        "<PLAYER_1>": "Antonio Valencia"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) dinks a cross into the box in an attempt to find one of his teammates, but the defence manages to clear.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) sends a cross into the box, but the opposition's defence quickly intercepts the ball.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) sends a cross into the box, but the opposition's defence quickly intercepts the ball."
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Juan Manuel Mata"
+      },
+      "reference_tagged": "Flag up against <PLAYER_1> (<TEAM>). He had space to move into behind the defence, but he went too soon.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "other-play",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "The resulting set piece, sent into the penalty area by <PLAYER_1> (<TEAM>), was easily dealt with by one of the defenders.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is moving okay again after that injury scare.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is moving okay again after that injury scare."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Antonio Valencia"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) makes a rough challenge and <REFEREE> blows his whistle for a foul. It's a free kick to <TEAM>, but they probably won't attempt a direct shot on goal from here.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement."
+    },
+    {
+      "label": "time",
+      "grounding": {},
+      "reference_tagged": "5 additional min. will be played.",
+      "generated_tagged": "3 min. of stoppage - time to be played.",
+      "generated_tagged_raw_debug": "3 min. of stoppage - time to be played."
+    },
+    {
+      "label": "substitution",
+      "grounding": {
+        "<PLAYER_1>": "Alexis Sanchez",
+        "<PLAYER_2>": "Mathieu Flamini"
+      },
+      "reference_tagged": "Substitution. <PLAYER_1> leaves the pitch and is replaced by <PLAYER_2> (<TEAM>).",
+      "generated_tagged": "the referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) replaces <PLAYER_2>.",
+      "generated_tagged_raw_debug": "the referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) replaces <PLAYER_2>."
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Robin van Persie"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) is flagged for offside.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "save",
+      "grounding": {
+        "<PLAYER_1>": "Alexis Sanchez"
+      },
+      "reference_tagged": "A neat pass is well received by <PLAYER_1> (<TEAM>), who is lurking on the edge of the box and strikes the ball towards the middle of the target. The goalkeeper makes a decent save to block his shot.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) makes a good run to meet a precise cross just outside the box. he latches on to it and strikes the ball, but the goalkeeper pulls off a brilliant save.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) makes a good run to meet a precise cross just outside the box. he latches on to it and strikes the ball, but the goalkeeper pulls off a brilliant save."
+    },
+    {
+      "label": "shot",
+      "grounding": {
+        "<PLAYER_1>": "David Ospina",
+        "<PLAYER_2>": "Marouane Fellaini",
+        "<PLAYER_3>": "Robin van Persie"
+      },
+      "reference_tagged": "<PLAYER_1> doesn't have to worry about this one. <PLAYER_2> plays a pass into the feet of <PLAYER_3> (<TEAM>), who is unable to find the target as his effort from inside the box goes high over the bar.",
+      "generated_tagged": "<PLAYER_1> doesn't have to worry about this one. <PLAYER_2> plays a pass into the feet of <PLAYER_3> (<TEAM>), who is unable to find the target as his effort from inside the box goes high over the bar.",
+      "generated_tagged_raw_debug": "<PLAYER_1> doesn't have to worry about this one. <PLAYER_2> plays a pass into the feet of <PLAYER_3> (<TEAM>), who is unable to find the target as his effort from inside the box goes high over the bar."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Ander Herrera"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) makes a reckless foul in order to win the ball from his opponent. <REFEREE> has a clear sight of it and blows his whistle.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a foul after unfairly battling his opponent for the ball.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a foul after unfairly battling his opponent for the ball."
+    },
+    {
+      "label": "shot",
+      "grounding": {
+        "<PLAYER_1>": "Olivier Giroud"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) receives a brilliant pass and wastes a big opportunity as his shot from inside the penalty area flies narrowly wide of the left post.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) makes a yard for himself inside the box after an accurate pass and takes a shot that goes just wide of the left post.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) makes a yard for himself inside the box after an accurate pass and takes a shot that goes just wide of the left post."
+    },
+    {
+      "label": "save",
+      "grounding": {
+        "<PLAYER_1>": "David Ospina",
+        "<PLAYER_2>": "Chris Smalling"
+      },
+      "reference_tagged": "<PLAYER_1> makes a superb save to deny a header which was nodded by <PLAYER_2> (<TEAM>) after a cross from the side.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) sends a long ball in, but <PLAYER_2> comfortably gathers the ball.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) sends a long ball in, but <PLAYER_2> comfortably gathers the ball."
+    },
+    {
+      "label": "soccer-ball-own",
+      "grounding": {
+        "<PLAYER_1>": "Tyler Blackett"
+      },
+      "reference_tagged": "What a bad luck! <PLAYER_1> (<TEAM>) got in the way of a pass and unintentionally sent the ball past his own goalkeeper. The score is 1:1.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) scores an unfortunate own goal after deflecting the ball into his own net.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) scores an unfortunate own goal after deflecting the ball into his own net."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Juan Manuel Mata"
+      },
+      "reference_tagged": "<REFEREE> blows his whistle after <PLAYER_1> (<TEAM>) brings one of his opponents down with a strong tackle.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement."
+    },
+    {
+      "label": "corner",
+      "grounding": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) decides to take a short corner instead of crossing into the box.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety."
+    },
+    {
+      "label": "shot",
+      "grounding": {
+        "<PLAYER_1>": "Antonio Valencia"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) fails to send a pass into the box as his effort is cut out. <TEAM> have a corner.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) makes a yard for himself on the edge of the box after picking up a pass, but produces a poor effort that sails high over the bar.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) makes a yard for himself on the edge of the box after picking up a pass, but produces a poor effort that sails high over the bar."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Francis Coquelin"
+      },
+      "reference_tagged": "It looks like <PLAYER_1> (<TEAM>) saw red with that tackle. <REFEREE> won't tolerate such behaviour on the pitch and blows for a foul.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a foul after unfairly battling his opponent for the ball.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a foul after unfairly battling his opponent for the ball."
+    },
+    {
+      "label": "pass",
+      "grounding": {
+        "<PLAYER_1>": "Chris Smalling"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) sends a long ball across the pitch, but it misses its target.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) fails to pick a body out in the box with an over - hit chip pass.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) fails to pick a body out in the box with an over - hit chip pass."
+    },
+    {
+      "label": "corner",
+      "grounding": {
+        "<PLAYER_1>": "Juan Manuel Mata"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) takes the corner but it's cleared.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety."
+    },
+    {
+      "label": "pass",
+      "grounding": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) delivers a long ball, but it lacks enough power to reach his teammates and is intercepted by one of the defenders. <TEAM> force a corner. Their opponents will face another attacking threat.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) fails to pick a body out in the box with an over - hit chip pass.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) fails to pick a body out in the box with an over - hit chip pass."
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Theo Walcott"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) is adjudged offside.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "substitution",
+      "grounding": {
+        "<PLAYER_1>": "David de Gea",
+        "<PLAYER_2>": "Victor Valdes",
+        "<COACH_1>": "Louis van Gaal"
+      },
+      "reference_tagged": "<COACH_1> is forced to make a change. <PLAYER_1> is unable to continue due to injury, <PLAYER_2> (<TEAM>) comes on.",
+      "generated_tagged": "<COACH_1> has decided to make a change. <PLAYER_1> (<TEAM>) replaces <PLAYER_2>.",
+      "generated_tagged_raw_debug": "<COACH_1> has decided to make a change. <PLAYER_1> (<TEAM>) replaces <PLAYER_2>."
+    },
+    {
+      "label": "substitution",
+      "grounding": {
+        "<PLAYER_1>": "Tyler Blackett",
+        "<PLAYER_2>": "Marcos Rojo"
+      },
+      "reference_tagged": "The referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) comes onto the pitch for <PLAYER_2>.",
+      "generated_tagged": "the referee signals that it is time for a substitution and <PLAYER_1> (<TEAM>) will replace <PLAYER_2>.",
+      "generated_tagged_raw_debug": "the referee signals that it is time for a substitution and <PLAYER_1> (<TEAM>) will replace <PLAYER_2>."
+    },
+    {
+      "label": "substitution",
+      "grounding": {
+        "<PLAYER_1>": "Jack Wilshere",
+        "<PLAYER_2>": "Santi Cazorla",
+        "<COACH_1>": "Arsene Wenger"
+      },
+      "reference_tagged": "<COACH_1> has decided to make a change. <PLAYER_1> (<TEAM>) replaces <PLAYER_2>.",
+      "generated_tagged": "<COACH_1> has decided to make a change. <PLAYER_1> (<TEAM>) replaces <PLAYER_2>.",
+      "generated_tagged_raw_debug": "<COACH_1> has decided to make a change. <PLAYER_1> (<TEAM>) replaces <PLAYER_2>."
+    },
+    {
+      "label": "substitution",
+      "grounding": {
+        "<PLAYER_1>": "Theo Walcott",
+        "<PLAYER_2>": "Hector Bellerin"
+      },
+      "reference_tagged": "Here comes a substitution. <PLAYER_1> (<TEAM>) is brought on as a substitute for <PLAYER_2>.",
+      "generated_tagged": "the referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) replaces <PLAYER_2>.",
+      "generated_tagged_raw_debug": "the referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) replaces <PLAYER_2>."
+    },
+    {
+      "label": "injury",
+      "grounding": {
+        "<PLAYER_1>": "David de Gea"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) is clearly asking for some medical attention with his painful gestures. The extent of his injury is yet to be discovered.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is having a really tough time right now. we are about to find out how serious his injury is.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is having a really tough time right now. we are about to find out how serious his injury is."
+    },
+    {
+      "label": "corner",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "The resulting corner, taken by <PLAYER_1> (<TEAM>), comes to nothing.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety."
+    },
+    {
+      "label": "dribble",
+      "grounding": {
+        "<PLAYER_1>": "Aaron Ramsey"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) goes on a solo run, but he fails to create a chance as an opposition player blocks him. <TEAM> force a corner. They send men into the box.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) looks to break free, but an opposing player clears the ball away.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) looks to break free, but an opposing player clears the ball away."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Juan Manuel Mata"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) trips an opposition player and <REFEREE> signals a foul.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement."
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "reference_tagged": "The linesman raises his flag for offside before <PLAYER_1> (<TEAM>) heads on.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "A poorly executed mid-range free kick by <PLAYER_1> (<TEAM>) as he fails to deliver a decent cross.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a foul after unfairly battling his opponent for the ball.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a foul after unfairly battling his opponent for the ball."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Ander Herrera"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) makes a slide tackle, but referee <REFEREE> blows for a foul. Free kick. <TEAM> will probably just try to cross the ball in from here.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement."
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Robin van Persie"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) is adjudged to have been offside when making his run.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Alexis Sanchez"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) sends a quick through ball into space for his teammate who is lurking close to the offside line, but one of the defenders intercepts and clears the danger.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "shot",
+      "grounding": {
+        "<PLAYER_1>": "Santi Cazorla",
+        "<PLAYER_2>": "David de Gea"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>)'s poor effort is easily saved by <PLAYER_2>. He connects well with a cross, but mistimes it a little, and it heads towards the middle of the target and straight into the grateful hands of the goalkeeper.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) shoots from the edge of the penalty area. the ball travels towards the middle of the target, but <PLAYER_2> easily deals with the threat.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) shoots from the edge of the penalty area. the ball travels towards the middle of the target, but <PLAYER_2> easily deals with the threat."
+    },
+    {
+      "label": "corner",
+      "grounding": {
+        "<PLAYER_1>": "Santi Cazorla"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) whips in the corner, but one of the defending players gets a head on it and intercepts.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety."
+    },
+    {
+      "label": "pass",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) slides a pass forward, but one of the defenders cuts it out. <TEAM> force their opponents to concede a corner.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) fails to pick a body out in the box with an over - hit chip pass.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) fails to pick a body out in the box with an over - hit chip pass."
+    },
+    {
+      "label": "corner",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "The corner from <PLAYER_1> (<TEAM>) is cleared away by the defence.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety."
+    },
+    {
+      "label": "shot",
+      "grounding": {
+        "<PLAYER_1>": "Olivier Giroud",
+        "<PLAYER_2>": "David de Gea"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) darts into the penalty area to latch on to a pass, and he unleashes a low drive towards the middle of the net, but <PLAYER_2> is alert and denies him. <TEAM> have been awarded a corner kick. The referee and one of his assistants both point at the corner flag.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) darts into the penalty area to latch on to a pass, and he unleashes a shot towards the middle of the net, but <PLAYER_2> is alert and denies him.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) darts into the penalty area to latch on to a pass, and he unleashes a shot towards the middle of the net, but <PLAYER_2> is alert and denies him."
+    },
+    {
+      "label": "foul",
+      "grounding": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "reference_tagged": "<REFEREE> blows his whistle for a foul after <PLAYER_1> (<TEAM>) hacks down one of his opponents.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) commits a rough challenge and <REFEREE> blows his whistle for an infringement."
+    },
+    {
+      "label": "substitution",
+      "grounding": {
+        "<PLAYER_1>": "Radamel Falcao",
+        "<PLAYER_2>": "Robin van Persie"
+      },
+      "reference_tagged": "The referee allows time for a substitution. <PLAYER_1> will be replaced by <PLAYER_2> (<TEAM>).",
+      "generated_tagged": "the referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) replaces <PLAYER_2>.",
+      "generated_tagged_raw_debug": "the referee stops play so that a substitution can be made and <PLAYER_1> (<TEAM>) replaces <PLAYER_2>."
+    },
+    {
+      "label": "shot",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) attempts to find some of his teammates with a dangerous pass from the edge of the box. The opponent's defence, however, intercepts the effort and clears the ball to safety.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) makes a yard for himself on the edge of the box after picking up a pass, but produces a poor effort that sails high over the bar.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) makes a yard for himself on the edge of the box after picking up a pass, but produces a poor effort that sails high over the bar."
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Ashley Young"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) finds himself beyond the last defender, but the game is stopped by the referee after the linesman signals for offside.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "offside",
+      "grounding": {
+        "<PLAYER_1>": "Marouane Fellaini"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) is offside and the linesman raises his flag.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) is caught offside!",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) is caught offside!"
+    },
+    {
+      "label": "corner",
+      "grounding": {
+        "<PLAYER_1>": "Mesut Ozil"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) swings in the corner, but it's comfortably cleared away.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) takes the corner, but the opposition's defence is ready and clears the ball to safety."
+    },
+    {
+      "label": "clearance",
+      "grounding": {
+        "<PLAYER_1>": "Hector Bellerin"
+      },
+      "reference_tagged": "<PLAYER_1> (<TEAM>) sends a pass into the box, but his attempt is thwarted and cleared. Now <TEAM> have a corner.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) sends a pass into the box, but his attempt is thwarted and cleared.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) sends a pass into the box, but his attempt is thwarted and cleared."
+    },
+    {
+      "label": "save",
+      "grounding": {
+        "<PLAYER_1>": "David Ospina",
+        "<PLAYER_2>": "Marcos Rojo"
+      },
+      "reference_tagged": "<PLAYER_1> makes a save to deny the long-range effort from <PLAYER_2> (<TEAM>) towards the middle of the goal.",
+      "generated_tagged": "<PLAYER_1> (<TEAM>) sends a long ball in, but <PLAYER_2> comfortably gathers the ball.",
+      "generated_tagged_raw_debug": "<PLAYER_1> (<TEAM>) sends a long ball in, but <PLAYER_2> comfortably gathers the ball."
+    }
+  ]
+}

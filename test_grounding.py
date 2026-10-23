@@ -173,16 +173,26 @@ def main():
     ap.add_argument("--ckpt", default="checkpoints/overfit.pt")
     ap.add_argument("--data", default="data/processed_dev.json")
     ap.add_argument("--n", type=int, default=200)
+    ap.add_argument("--vocab", default="data/vocab.json",
+                    help="used only if the checkpoint does not carry its own vocabulary")
     args = ap.parse_args()
 
-    device = "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     data = json.loads(Path(args.data).read_text(encoding="utf-8"))
     examples = data["train"][: args.n]
+
+    # Checks 1-2 must test the vocabulary and target mask of the model under test,
+    # not whichever vocab.json happens to be on disk.
+    loaded = load_model(args.ckpt, device, vocab_path=args.vocab) \
+        if Path(args.ckpt).exists() else None
+    vocab = loaded[1] if loaded and loaded[1].target_ids is not None \
+        else Vocab.load(args.vocab)
+    print(f"vocabulary under test: {'checkpoint ' + args.ckpt if loaded else args.vocab}"
+          f" ({len(vocab):,} tokens) | device {device}")
 
     print("=" * 72)
     print("1. VOCABULARY CONTAINS NO REAL NAMES (name-anonymization guarantee)")
     print("=" * 72)
-    vocab = Vocab.load("data/vocab.json")
     name_hits = check_vocab_has_no_names(vocab, data)
 
     print("\n" + "=" * 72)
@@ -199,12 +209,13 @@ def main():
     print("4. END-TO-END ON A REAL CHECKPOINT")
     print("=" * 72)
     e2e_ok = True
-    if not Path(args.ckpt).exists():
+    if not loaded:
         print(f"  SKIPPED - {args.ckpt} not found")
     else:
-        model, ckvocab, ck = load_model(args.ckpt, device)
+        model, ckvocab, ck = loaded
         ds = CommentaryDataset(examples, ckvocab)
         src, _ = collate([ds[i] for i in range(len(examples))])
+        src = src.to(device)
         banned = build_banned_mask(examples, ckvocab, device)
         con = model.greedy_decode(src, max_len=ck["max_tgt"], banned=banned)
         raw = model.greedy_decode(src, max_len=ck["max_tgt"], banned=None)

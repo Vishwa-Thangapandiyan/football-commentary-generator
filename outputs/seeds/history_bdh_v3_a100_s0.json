@@ -1,0 +1,91 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.786,
+      "val_loss": 0.8809,
+      "epoch_seconds": 35.2,
+      "val_ppl": 2.41
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6709,
+      "val_loss": 0.5696,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.77
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.4668,
+      "val_loss": 0.4787,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.61
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.3926,
+      "val_loss": 0.4451,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.56
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.3532,
+      "val_loss": 0.4328,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.54
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.3315,
+      "val_loss": 0.4212,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.52
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.3131,
+      "val_loss": 0.4144,
+      "epoch_seconds": 34.1,
+      "val_ppl": 1.51
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.2986,
+      "val_loss": 0.4128,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.51
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.2917,
+      "val_loss": 0.4079,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.5
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.2812,
+      "val_loss": 0.4098,
+      "epoch_seconds": 34.2,
+      "val_ppl": 1.51
+    }
+  ],
+  "stopped_reason": "completed 10 epochs",
+  "params": 7417344,
+  "config": {
+    "vocab_size": 2199,
+    "n_layer": 6,
+    "n_embd": 256,
+    "n_head": 4,
+    "mlp_internal_dim_multiplier": 32,
+    "dropout": 0.1
+  },
+  "data": "data/processed_v3.json",
+  "seed": 0,
+  "lr": 0.001,
+  "wd": 0.1,
+  "batch_size": 32,
+  "amp": "bf16",
+  "gpu": "NVIDIA A100-SXM4-40GB"
+}
